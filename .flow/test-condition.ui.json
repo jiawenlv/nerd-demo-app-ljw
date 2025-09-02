@@ -1,19 +1,10 @@
 {
   "nodes": {
-    "9cff3bba5a5c489f82e7b358fa3c5f63": {
-      "x": 360,
-      "y": 525,
-      "width": 489,
-      "height": 462,
-      "inputs": {
-        "obj": "12be25a0a9fe4fe3b2f29c5f5179be43"
-      }
-    },
     "a90b9e616900423bb1762faf3474119e": {
       "x": 1800,
       "y": 1140,
       "width": 688,
-      "height": 606,
+      "height": 488,
       "inputs": {
         "obj": "eced0fbbf01544d8ae141d48cc92a561"
       },
@@ -39,7 +30,7 @@
       "x": 1800,
       "y": 465,
       "width": 688,
-      "height": 332,
+      "height": 446,
       "inputs": {
         "input_1": "e8517cd0cc8845578210633c5c8e0647"
       },
