@@ -1,0 +1,128 @@
+{
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "id": "9cff3bba5a5c489f82e7b358fa3c5f63",
+      "name": "Start",
+      "type": "start",
+      "desc": "",
+      "inputs": {
+        "obj": {
+          "type": "object",
+          "desc": "New input field",
+          "value": {
+            "a": {
+              "b": 3
+            }
+          }
+        }
+      },
+      "nextNodes": [
+        "Condition"
+      ]
+    },
+    {
+      "id": "a90b9e616900423bb1762faf3474119e",
+      "name": "End2",
+      "type": "end",
+      "desc": "",
+      "inputs": {
+        "obj": {
+          "type": "object",
+          "desc": "New input field",
+          "value": "$.Start.inputs.obj"
+        }
+      },
+      "outputs": {
+        "output1": {
+          "type": "string",
+          "desc": "自定义输出1",
+          "value": "不等于1",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "output2": {
+          "type": "string",
+          "desc": "自定义输出2",
+          "value": "${obj[0].a.b}",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      }
+    },
+    {
+      "id": "d33cec16c56b483f872fbb00259a0325",
+      "name": "Condition",
+      "type": "condition",
+      "desc": "",
+      "inputs": {
+        "input_1": {
+          "type": "string",
+          "desc": "New input field",
+          "value": "$.Start.inputs.obj"
+        }
+      },
+      "configs": {
+        "conditionGroups": [
+          {
+            "conditions": [
+              {
+                "left": "${input_1.a.b}",
+                "operator": "equal",
+                "right": 1
+              }
+            ],
+            "relationship": "AND",
+            "handleId": "c15090ae51494ae6ae5726c907aef6f7",
+            "nextNode": "End"
+          },
+          {
+            "conditions": [],
+            "relationship": "AND",
+            "handleId": "a322d267a4e74e81b63b09c50a10537b",
+            "isDefaultBranch": true,
+            "nextNode": "End2"
+          }
+        ],
+        "defaultNextNode": "End2"
+      }
+    },
+    {
+      "id": "f9dc7499769d4a06a98ef1b45565bd0c",
+      "name": "End",
+      "type": "end",
+      "desc": "",
+      "inputs": {
+        "input_1": {
+          "type": "string",
+          "desc": "New input field",
+          "value": "$.Start.inputs.obj"
+        }
+      },
+      "outputs": {
+        "output1": {
+          "type": "string",
+          "desc": "自定义输出1",
+          "value": "等于 1",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "data": {
+          "type": "string",
+          "desc": "自定义输出2",
+          "value": "${input_1.a.b}",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      }
+    }
+  ]
+}

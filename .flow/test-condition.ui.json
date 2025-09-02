@@ -1,0 +1,52 @@
+{
+  "nodes": {
+    "9cff3bba5a5c489f82e7b358fa3c5f63": {
+      "x": 360,
+      "y": 525,
+      "width": 489,
+      "height": 462,
+      "inputs": {
+        "obj": "12be25a0a9fe4fe3b2f29c5f5179be43"
+      }
+    },
+    "a90b9e616900423bb1762faf3474119e": {
+      "x": 1800,
+      "y": 1140,
+      "width": 688,
+      "height": 606,
+      "inputs": {
+        "obj": "eced0fbbf01544d8ae141d48cc92a561"
+      },
+      "outputs": {
+        "output1": "bdcb9b2b983345b8b67e34aa5d25af1f",
+        "output2": "4f1ba06b84d6424291d72280560e4d15"
+      }
+    },
+    "d33cec16c56b483f872fbb00259a0325": {
+      "x": 1020,
+      "y": 450,
+      "width": 622,
+      "height": 538,
+      "inputs": {
+        "input_1": "911391cdcfba4f499664003c2c8c5175"
+      },
+      "handleIds": {
+        "condition_0": "c15090ae51494ae6ae5726c907aef6f7",
+        "default": "a322d267a4e74e81b63b09c50a10537b"
+      }
+    },
+    "f9dc7499769d4a06a98ef1b45565bd0c": {
+      "x": 1800,
+      "y": 465,
+      "width": 688,
+      "height": 332,
+      "inputs": {
+        "input_1": "e8517cd0cc8845578210633c5c8e0647"
+      },
+      "outputs": {
+        "output1": "ecf0cd100ec643948eb2bb6530d1b66c",
+        "data": "c29aa274a2d54d6284c7209fe9538307"
+      }
+    }
+  }
+}

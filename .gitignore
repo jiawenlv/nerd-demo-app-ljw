@@ -1,0 +1,8 @@
+node_modules
+.claude
+CLAUDE.md
+.DS_Store
+dist
+# Workflow temporary directories
+.workflow-temp-*
+
