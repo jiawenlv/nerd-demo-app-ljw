@@ -1,0 +1,83 @@
+{
+  "name": "test-array-input",
+  "desc": "",
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "id": "4557c7016eaa4fb08e2f728a7e8a07ac",
+      "name": "Start",
+      "type": "start",
+      "desc": "",
+      "inputs": {
+        "input_1": {
+          "type": "array",
+          "desc": "New input field",
+          "value": [
+            {
+              "field1": "1111",
+              "field2": "2222"
+            },
+            {
+              "field1": "333",
+              "field2": "44444"
+            },
+            {
+              "field1": "888",
+              "field2": "9999"
+            }
+          ],
+          "items": {
+            "type": "object",
+            "desc": "",
+            "properties": {
+              "field1": {
+                "type": "string",
+                "desc": ""
+              },
+              "field2": {
+                "type": "string",
+                "desc": ""
+              }
+            }
+          }
+        }
+      },
+      "nextNodes": [
+        "End"
+      ]
+    },
+    {
+      "id": "05e0f7150b98417aab0c58e71557384c",
+      "name": "End",
+      "type": "end",
+      "desc": "",
+      "inputs": {
+        "input_1": {
+          "type": "array",
+          "desc": "New input field",
+          "value": "$.Start.inputs.input_1"
+        }
+      },
+      "outputs": {
+        "output1": {
+          "type": "string",
+          "desc": "自定义输出1",
+          "value": "${input_1[0].field1}",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "output2": {
+          "type": "string",
+          "desc": "自定义输出2",
+          "value": "222",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      }
+    }
+  ]
+}

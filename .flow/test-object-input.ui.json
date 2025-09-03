@@ -1,0 +1,26 @@
+{
+  "nodes": {
+    "7310773187a142d4a8f6270303834723": {
+      "x": 315,
+      "y": 210,
+      "width": 599,
+      "height": 646,
+      "inputs": {
+        "input_1": "6d778ac4b13f4066bfd14a1a18ec5b86"
+      }
+    },
+    "be4da36641e149ceb7a617059038066f": {
+      "x": 1560,
+      "y": 285,
+      "width": 688,
+      "height": 446,
+      "inputs": {
+        "input_1": "a772ea7d6ba144c2ba0f8ab65af8b4f7"
+      },
+      "outputs": {
+        "field1": "20b84d5128524f219c7f85c25718340b",
+        "field2": "82c9dcd18c49448fa8ed510c53a408a9"
+      }
+    }
+  }
+}

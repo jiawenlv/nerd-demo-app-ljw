@@ -1,10 +1,10 @@
 {
-  "name": "test-input",
+  "name": "test-object-input",
   "desc": "",
   "version": "1.0.0",
   "nodes": [
     {
-      "id": "63ded0a719db4a85821030533b065f9b",
+      "id": "7310773187a142d4a8f6270303834723",
       "name": "Start",
       "type": "start",
       "desc": "",
@@ -13,19 +13,13 @@
           "type": "object",
           "desc": "New input field",
           "value": {
-            "a": "hello world",
-            "c": "3"
-          },
-          "properties": {
-            "a": {
-              "type": "string",
-              "desc": ""
-            },
-            "c": {
-              "type": "string",
-              "desc": ""
+            "a": "11",
+            "field2": "11113333333",
+            "field3": {
+              "field2": "555555"
             }
-          }
+          },
+          "properties": {}
         }
       },
       "nextNodes": [
@@ -33,22 +27,31 @@
       ]
     },
     {
-      "id": "6204f1f13b03476b8f39d13642456ecd",
+      "id": "be4da36641e149ceb7a617059038066f",
       "name": "End",
       "type": "end",
       "desc": "",
       "inputs": {
-        "outputInput": {
+        "input_1": {
           "type": "string",
           "desc": "New input field",
           "value": "$.Start.inputs.input_1"
         }
       },
       "outputs": {
-        "output1": {
+        "field1": {
           "type": "string",
           "desc": "自定义输出1",
-          "value": "${outputInput.a}",
+          "value": "${input_1.a}",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "field2": {
+          "type": "string",
+          "desc": "自定义输出2",
+          "value": "${input_1.field3.field2}",
           "isDynamic": false,
           "isBuiltin": false,
           "editable": true,
