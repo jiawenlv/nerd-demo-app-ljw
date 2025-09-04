@@ -10,7 +10,12 @@
         "input_1": {
           "type": "string",
           "desc": "New input field",
-          "value": ""
+          "value": "1111"
+        },
+        "input_2": {
+          "type": "string",
+          "desc": "New input field",
+          "value": "2222"
         }
       },
       "nextNodes": [
@@ -34,6 +39,7 @@
           "type": "string",
           "desc": "自定义输出1",
           "value": "插入失败",
+          "isDynamic": false,
           "isBuiltin": false,
           "editable": true,
           "removable": true
@@ -45,6 +51,18 @@
       "name": "CustomSQL",
       "type": "customSQL",
       "desc": "",
+      "inputs": {
+        "output1": {
+          "type": "string",
+          "desc": "自定义输出1",
+          "value": "$.Start.inputs.input_1"
+        },
+        "input_1": {
+          "type": "string",
+          "desc": "New input field",
+          "value": "$.Start.inputs.input_2"
+        }
+      },
       "outputs": {
         "data": {
           "type": "array",
@@ -58,7 +76,7 @@
       },
       "configs": {
         "table": "",
-        "sql": "INSERT INTO \"User\" (id, name) VALUES ('user-006', '爱丽丝') RETURNING \"id\";"
+        "sql": "INSERT INTO \"User\" (id, name) VALUES ('${output1}', '${input_1}') RETURNING \"id\";"
       },
       "nextNodes": [
         "Condition"
@@ -111,6 +129,7 @@
           "type": "string",
           "desc": "自定义输出1",
           "value": "插入成功",
+          "isDynamic": false,
           "isBuiltin": false,
           "editable": true,
           "removable": true

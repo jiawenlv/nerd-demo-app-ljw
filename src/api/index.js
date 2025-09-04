@@ -11,6 +11,7 @@ import testInsertRouter from './test-insert.js'
 import testQueryRouter from './test-query.js'
 import testDeleteRouter from './test-delete.js'
 import testUpdateRouter from './test-update.js'
+import testCreateSupplierRouter from './test-create-supplier.js'
 
 const router = new Router()
 
@@ -26,5 +27,6 @@ router.use(testInsertRouter.routes())
 router.use(testQueryRouter.routes())
 router.use(testDeleteRouter.routes())
 router.use(testUpdateRouter.routes())
+router.use(testCreateSupplierRouter.routes())
 
 export default router

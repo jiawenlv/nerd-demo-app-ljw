@@ -5,10 +5,10 @@ const router = new Router()
 
 router.post('/test-insert', async (ctx) => {
   // 提取请求参数
-  const { input_1 } = ctx.request.body
+  const { input_1, input_2 } = ctx.request.body
   
   // 调用主处理函数（平铺参数）
-  const result = await testInsertHandler(input_1);
+  const result = await testInsertHandler(input_1, input_2);
   
   // 返回结果
   ctx.body = result;

@@ -3,7 +3,7 @@ import end2 from './end2.js';
 
 export default async function condition(data) {
   // 条件判断逻辑
-  if (input_1.length >= 2) {
+  if (input_1.length >= 1) {
     const { output1 } = await end();
     return { output1 };
   } else {

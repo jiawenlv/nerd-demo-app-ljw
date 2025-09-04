@@ -1,0 +1,154 @@
+{
+  "nodes": {
+    "3b6b487613cbdbcdcdebe1e0d164b0e6": {
+      "x": 150,
+      "y": 150,
+      "width": 624,
+      "height": 557,
+      "inputs": {
+        "SupplierCode": "3dd0f9ba16f445f6af2e8a4042822e9b",
+        "SupplierName": "427c0658ef1e453193a163eceadd8f6d",
+        "ContactName": "48a10e3cb336412c93b9c6db40b214c7",
+        "Phone": "1075284d4d5246dc8177add72fb39367",
+        "Email": "b1d928b8511b457abfdaae39ddc8e175",
+        "Address": "13d3176dcec04d8ebebdea9e4b4bbea4"
+      }
+    },
+    "df14b2c0980b00a7a33955c0d055c011": {
+      "x": 5550,
+      "y": 700,
+      "width": 688,
+      "height": 929,
+      "inputs": {
+        "GeneratedSupplierId": "1611e3d43d4d440393cd54fc446401c4",
+        "ValidatedSupplierName": "09d86e2ecc3b464cbd978b54d92527c1"
+      },
+      "outputs": {
+        "ErrorMessage": "f6f464c7f7ae4ac1b2a7e6c96d7313fd",
+        "ErrorCode": "cfad9ed463f84d69afd367b93586f0da"
+      }
+    },
+    "51afdf177460609adb98bbbc8b444d04": {
+      "x": 6450,
+      "y": 1300,
+      "width": 784,
+      "height": 556,
+      "inputs": {
+        "ErrorMessage": "78db074ab8f945388eb66d8403159112",
+        "ErrorCode": "13603506097d4312b07912951b77c063"
+      },
+      "outputs": {
+        "code": "a11fbb86d74344059c90e3200cae00ec",
+        "data": "bbb0d6819ad944b6b749a6968499d8fd",
+        "message": "6fb8f7158bc548e9aeb9ca5db8bbab07"
+      }
+    },
+    "980fe08b01ecc283a775dfecd7bc09b0": {
+      "x": 1050,
+      "y": 150,
+      "width": 688,
+      "height": 1257,
+      "inputs": {
+        "SupplierCode": "073e3dc32ec749158d1fc06f1b92c4ce",
+        "SupplierName": "9748893810d34762a03a4ff26ee3b8c5",
+        "ContactName": "c7dae955fc544d40af739e1574d24ad5",
+        "Phone": "6567ca51123045f8876c4dceab680c9e",
+        "Email": "6039ff5d9feb467e959ef3b5dccada12",
+        "Address": "339cac8179184e8e877ace33b5516b6c"
+      },
+      "outputs": {
+        "ValidatedSupplierCode": "2416bb47f064401c84c9b555a2ee1a1d",
+        "ValidatedSupplierName": "9b930c10cdd042298554ed31feaca20b",
+        "ValidatedContactName": "8edcaa5a1b464372be27319388cece14",
+        "ValidatedPhone": "db53fde56492457da8a2f5d9246732e9",
+        "ValidatedEmail": "e2b207bf2ba847ad98f8fde0e1853e68",
+        "ValidatedAddress": "88294f6db8b24f938a1cc6af41b6fbad"
+      }
+    },
+    "ef0b76ebb0a4c94f5427d12225a2af74": {
+      "x": 1950,
+      "y": 150,
+      "width": 688,
+      "height": 847,
+      "inputs": {
+        "ValidatedSupplierCode": "feba8a5086d64565b8f976c1b063e85b"
+      },
+      "outputs": {
+        "GeneratedSupplierId": "eef0ffe161fa4662af36f1d5398e15c7"
+      }
+    },
+    "80df1ceb7edaa47af7c7637409312352": {
+      "x": 2850,
+      "y": 150,
+      "width": 688,
+      "height": 937,
+      "inputs": {
+        "GeneratedSupplierId": "5e0a337cd5a446efb842bcb2b666bee8",
+        "ValidatedSupplierCode": "3ae1af10acc64ea29f233f1f02f781f1",
+        "ValidatedSupplierName": "f8cf0fe079d54ecb9926734224e55b3a",
+        "ValidatedContactName": "5d8dccf18003427fbbe052598c157e80",
+        "ValidatedPhone": "8bfa5b257c3847728943f3c8bb139de3",
+        "ValidatedEmail": "8c793ccd661840609819b0474b418214",
+        "ValidatedAddress": "a6a3e377dee84e51a1a5c6f79acf1f96"
+      },
+      "outputs": {
+        "CreateResult": "2add43f6e6f14d629e436f3949a09c44"
+      }
+    },
+    "4226a2aaab322e276c5f04b5106d3031": {
+      "x": 3750,
+      "y": 150,
+      "width": 688,
+      "height": 888,
+      "inputs": {
+        "CreateResult": "a1405ebb6b4e49e6b078e6e79f2367cb"
+      },
+      "outputs": {
+        "IsCreateSuccess": "45cbe572cf5f48369e6e163e365b1e7d",
+        "CreatedSupplierId": "a1cb0862ab434eefb72f2dcc53cc1c21"
+      }
+    },
+    "8e40d897f723c42e675c0ac3a937f6f1": {
+      "x": 4650,
+      "y": 150,
+      "width": 624,
+      "height": 564,
+      "inputs": {
+        "IsCreateSuccess": "a233161219944bcab7bbfb10342dce88"
+      },
+      "handleIds": {
+        "condition_0": "f6f8ebe7555941ddbe936ebde36ad0e9",
+        "default": "4bb6bb60e0c945c4998288b3733c7471"
+      }
+    },
+    "335291d9829cc9304d43dd0625909e53": {
+      "x": 5550,
+      "y": -400,
+      "width": 688,
+      "height": 929,
+      "inputs": {
+        "CreatedSupplierId": "2efa547b96d34c56a573e4fe99a57faa",
+        "ValidatedSupplierName": "70f66500542a4257a8a979e8f3f9b5cc"
+      },
+      "outputs": {
+        "SuccessMessage": "fef29af0116f40659d4f2922100395a5",
+        "SuccessSupplierId": "2e8001e3ad24438685407710aa4f2059"
+      }
+    },
+    "419655ed08185338a013d78a35ff43bf": {
+      "x": 6450,
+      "y": -1000,
+      "width": 784,
+      "height": 556,
+      "inputs": {
+        "SuccessMessage": "93b3581cdd55406aa9932a60de1f9357",
+        "SuccessSupplierId": "23c9dd803dde4d0abd3ec9f518cdd2ef"
+      },
+      "outputs": {
+        "code": "e50e6be578374d98ae9dd0dc436abfa9",
+        "data": "afe10cea901d40f19f3a5f0a4b1ca6d7",
+        "message": "0dbfcff021434137a5263840fc99de92"
+      }
+    }
+  }
+}

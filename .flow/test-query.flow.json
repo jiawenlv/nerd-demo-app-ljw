@@ -12,7 +12,7 @@
         "input_1": {
           "type": "string",
           "desc": "New input field",
-          "value": "user-001"
+          "value": "user-0012"
         }
       },
       "nextNodes": [
@@ -36,6 +36,7 @@
           "type": "string",
           "desc": "自定义输出1",
           "value": "查询失败",
+          "isDynamic": false,
           "isBuiltin": false,
           "editable": true,
           "removable": true
@@ -120,6 +121,7 @@
           "type": "string",
           "desc": "自定义输出1",
           "value": "查询成功",
+          "isDynamic": false,
           "isBuiltin": false,
           "editable": true,
           "removable": true
