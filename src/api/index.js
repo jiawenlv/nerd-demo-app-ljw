@@ -7,6 +7,8 @@ import testCategoriesRouter from './test-categories.js'
 import testRawSqlRouter from './test-raw-sql.js'
 import testHelloWorldRouter from './test-hello-world.js'
 import testReactRouter from './test-react.js'
+import testInsertRouter from './test-insert.js'
+import testQueryRouter from './test-query.js'
 
 const router = new Router()
 
@@ -18,5 +20,7 @@ router.use(testCategoriesRouter.routes())
 router.use(testRawSqlRouter.routes())
 router.use(testHelloWorldRouter.routes())
 router.use(testReactRouter.routes())
+router.use(testInsertRouter.routes())
+router.use(testQueryRouter.routes())
 
 export default router

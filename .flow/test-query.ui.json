@@ -1,0 +1,59 @@
+{
+  "nodes": {
+    "897c11eb96cf4f1787b01a06629625e3": {
+      "x": -390,
+      "y": 225,
+      "width": 624,
+      "height": 292,
+      "inputs": {
+        "input_1": "815983f75e3f4113be73f81b350a2f84"
+      }
+    },
+    "03b1541d7e2e4af28d292bae7691edaa": {
+      "x": 2100,
+      "y": 810,
+      "width": 688,
+      "height": 469,
+      "inputs": {
+        "input_1": "f118bf1e3c43497fa68a45c2f10f44da"
+      },
+      "outputs": {
+        "output1": "2e353bfa843241b2afe7802b96e02b29"
+      }
+    },
+    "5fa6d14fa7ca49238e484097ea02006d": {
+      "x": 435,
+      "y": 165,
+      "width": 688,
+      "height": 807,
+      "inputs": {
+        "input_1": "cbd2b53954554c8a9186f856a14907c0"
+      },
+      "outputs": {
+        "data": "3754b0bbb44b439596c16436c8b6dc3b"
+      }
+    },
+    "3a264991165a4bb88ebc071caefc4ede": {
+      "x": 1230,
+      "y": 195,
+      "width": 646,
+      "height": 546,
+      "inputs": {
+        "data": "574a7df74c32403b8ecafbee57aab4af"
+      },
+      "handleIds": {
+        "condition_0": "25e539cfc1644db39de8679022332bae",
+        "default": "deca7982a63e41ecbcaee7ac65e8e65b"
+      }
+    },
+    "df5cab8945854e5ba89cfa8cf46fdc5c": {
+      "x": 2130,
+      "y": 135,
+      "width": 688,
+      "height": 412,
+      "outputs": {
+        "output1": "379d4dc24cab483bb536e2d502d831fc"
+      }
+    }
+  }
+}
