@@ -10,7 +10,7 @@
         "input_1": {
           "type": "string",
           "desc": "New input field",
-          "value": ""
+          "value": "user-003"
         }
       },
       "nextNodes": [
@@ -28,6 +28,16 @@
           "desc": "New input field",
           "value": ""
         }
+      },
+      "outputs": {
+        "output1": {
+          "type": "string",
+          "desc": "自定义输出1",
+          "value": "失败",
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
       }
     },
     {
@@ -35,6 +45,13 @@
       "name": "CustomSQL",
       "type": "customSQL",
       "desc": "",
+      "inputs": {
+        "input_1": {
+          "type": "string",
+          "desc": "New input field",
+          "value": "$.Start.inputs.input_1"
+        }
+      },
       "outputs": {
         "data": {
           "type": "array",
@@ -48,7 +65,7 @@
       },
       "configs": {
         "table": "",
-        "sql": ""
+        "sql": "DELETE FROM \"User\" WHERE id = '${input_1}';"
       },
       "nextNodes": [
         "Condition"
@@ -71,9 +88,9 @@
           {
             "conditions": [
               {
-                "left": "${input_1}",
-                "operator": "greaterThan",
-                "right": 0
+                "left": "${data.affectedRows}",
+                "operator": "equal",
+                "right": 1
               }
             ],
             "relationship": "AND",
@@ -95,7 +112,17 @@
       "id": "df5cab8945854e5ba89cfa8cf46fdc5c",
       "name": "End",
       "type": "end",
-      "desc": ""
+      "desc": "",
+      "outputs": {
+        "output1": {
+          "type": "string",
+          "desc": "自定义输出1",
+          "value": "成功",
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      }
     }
   ]
 }

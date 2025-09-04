@@ -9,6 +9,8 @@ import testHelloWorldRouter from './test-hello-world.js'
 import testReactRouter from './test-react.js'
 import testInsertRouter from './test-insert.js'
 import testQueryRouter from './test-query.js'
+import testDeleteRouter from './test-delete.js'
+import testUpdateRouter from './test-update.js'
 
 const router = new Router()
 
@@ -22,5 +24,7 @@ router.use(testHelloWorldRouter.routes())
 router.use(testReactRouter.routes())
 router.use(testInsertRouter.routes())
 router.use(testQueryRouter.routes())
+router.use(testDeleteRouter.routes())
+router.use(testUpdateRouter.routes())
 
 export default router
