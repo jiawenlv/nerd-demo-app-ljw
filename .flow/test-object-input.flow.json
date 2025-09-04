@@ -1,6 +1,4 @@
 {
-  "name": "test-object-input",
-  "desc": "",
   "version": "1.0.0",
   "nodes": [
     {
@@ -13,13 +11,93 @@
           "type": "object",
           "desc": "New input field",
           "value": {
-            "a": "11",
-            "field2": "11113333333",
-            "field3": {
-              "field2": "555555"
+            "a": "123",
+            "field3": "",
+            "field4": {
+              "field1": "2222",
+              "field2": "",
+              "field3": ""
+            },
+            "field5": "",
+            "field6": {
+              "field1": "21",
+              "field2": "",
+              "field3": "",
+              "field4": {
+                "field1": "31",
+                "field2": "",
+                "field3": ""
+              }
             }
           },
-          "properties": {}
+          "properties": {
+            "a": {
+              "type": "string",
+              "desc": ""
+            },
+            "field3": {
+              "type": "string",
+              "desc": ""
+            },
+            "field4": {
+              "type": "object",
+              "desc": "",
+              "properties": {
+                "field1": {
+                  "type": "string",
+                  "desc": ""
+                },
+                "field2": {
+                  "type": "string",
+                  "desc": ""
+                },
+                "field3": {
+                  "type": "string",
+                  "desc": ""
+                }
+              }
+            },
+            "field5": {
+              "type": "string",
+              "desc": ""
+            },
+            "field6": {
+              "type": "object",
+              "desc": "",
+              "properties": {
+                "field1": {
+                  "type": "string",
+                  "desc": ""
+                },
+                "field2": {
+                  "type": "string",
+                  "desc": ""
+                },
+                "field3": {
+                  "type": "string",
+                  "desc": ""
+                },
+                "field4": {
+                  "type": "object",
+                  "desc": "",
+                  "properties": {
+                    "field1": {
+                      "type": "string",
+                      "desc": ""
+                    },
+                    "field2": {
+                      "type": "string",
+                      "desc": ""
+                    },
+                    "field3": {
+                      "type": "string",
+                      "desc": ""
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "nextNodes": [

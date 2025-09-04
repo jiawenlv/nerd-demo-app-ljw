@@ -1,6 +1,4 @@
 {
-  "name": "test-array-input",
-  "desc": "",
   "version": "1.0.0",
   "nodes": [
     {
@@ -14,7 +12,7 @@
           "desc": "New input field",
           "value": [
             {
-              "field1": "1111",
+              "field1": "1111123123",
               "field2": "2222"
             },
             {
@@ -22,13 +20,21 @@
               "field2": "44444"
             },
             {
-              "field1": "888",
-              "field2": "9999"
+              "field1": "4444",
+              "field2": "555553"
+            },
+            {
+              "field1": "2555",
+              "field2": "1555"
+            },
+            {
+              "field1": "",
+              "field2": ""
             }
           ],
           "items": {
             "type": "object",
-            "desc": "",
+            "desc": "数组第0个元素",
             "properties": {
               "field1": {
                 "type": "string",
@@ -71,7 +77,7 @@
         "output2": {
           "type": "string",
           "desc": "自定义输出2",
-          "value": "222",
+          "value": "${input_1[1].field3}",
           "isDynamic": false,
           "isBuiltin": false,
           "editable": true,
