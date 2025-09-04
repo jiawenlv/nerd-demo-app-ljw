@@ -6,6 +6,7 @@ import testArrayInputRouter from './test-array-input.js'
 import testCategoriesRouter from './test-categories.js'
 import testRawSqlRouter from './test-raw-sql.js'
 import testHelloWorldRouter from './test-hello-world.js'
+import testReactRouter from './test-react.js'
 
 const router = new Router()
 
@@ -16,5 +17,6 @@ router.use(testArrayInputRouter.routes())
 router.use(testCategoriesRouter.routes())
 router.use(testRawSqlRouter.routes())
 router.use(testHelloWorldRouter.routes())
+router.use(testReactRouter.routes())
 
 export default router

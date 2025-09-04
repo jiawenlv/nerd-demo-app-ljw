@@ -1,4 +1,6 @@
 {
+  "name": "test-array-input",
+  "desc": "",
   "version": "1.0.0",
   "nodes": [
     {
@@ -12,24 +14,34 @@
           "desc": "New input field",
           "value": [
             {
-              "field1": "1111123123",
-              "field2": "2222"
+              "field1": "009009009",
+              "field2": "2222",
+              "field3": "3",
+              "field4": ""
             },
             {
               "field1": "333",
-              "field2": "44444"
+              "field2": "44444",
+              "field3": "3",
+              "field4": ""
             },
             {
               "field1": "4444",
-              "field2": "555553"
+              "field2": "555553",
+              "field3": "3",
+              "field4": ""
             },
             {
               "field1": "2555",
-              "field2": "1555"
+              "field2": "1555",
+              "field3": "4",
+              "field4": ""
             },
             {
               "field1": "",
-              "field2": ""
+              "field2": "",
+              "field3": "",
+              "field4": ""
             }
           ],
           "items": {
@@ -41,6 +53,14 @@
                 "desc": ""
               },
               "field2": {
+                "type": "string",
+                "desc": ""
+              },
+              "field3": {
+                "type": "string",
+                "desc": ""
+              },
+              "field4": {
                 "type": "string",
                 "desc": ""
               }

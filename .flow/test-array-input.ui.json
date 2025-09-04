@@ -3,8 +3,8 @@
     "4557c7016eaa4fb08e2f728a7e8a07ac": {
       "x": 330,
       "y": 30,
-      "width": 594,
-      "height": 979,
+      "width": 816,
+      "height": 1469,
       "inputs": {
         "input_1": "ab6954e0701c4e628ae08a8bfeb800a5"
       }
@@ -12,7 +12,7 @@
     "05e0f7150b98417aab0c58e71557384c": {
       "x": 1290,
       "y": 165,
-      "width": 594,
+      "width": 688,
       "height": 454,
       "inputs": {
         "input_1": "6490f4e1783d4b8e8eb416673d9df156"

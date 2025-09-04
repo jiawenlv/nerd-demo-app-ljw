@@ -1,10 +1,10 @@
 
 
-export default async function end2(obj) {
+export default async function end2(input_1) {
   // End节点：构造最终返回结果
   return {
     output1: "不等于1",
-    output2: obj.a.b
+    output2: input_1.a
   };
 
 }
