@@ -1,0 +1,13 @@
+{
+  "nodes": {
+    "cee1abd4e47b4a26900048af80d21323": {
+      "x": 360,
+      "y": 165,
+      "width": 720,
+      "height": 333,
+      "inputs": {
+        "input_1": "8e7ffed5b0b44593ac893743a58ac0a7"
+      }
+    }
+  }
+}

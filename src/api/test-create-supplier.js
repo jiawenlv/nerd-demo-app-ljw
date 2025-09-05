@@ -5,10 +5,10 @@ const router = new Router()
 
 router.post('/test-create-supplier', async (ctx) => {
   // 提取请求参数
-  const { SupplierCode, SupplierName, ContactName, Phone, Email, Address } = ctx.request.body
+  const { supplierCode, name, contactName, phone, email, address } = ctx.request.body
   
   // 调用主处理函数（平铺参数）
-  const result = await testCreateSupplierHandler(SupplierCode, SupplierName, ContactName, Phone, Email, Address);
+  const result = await testCreateSupplierHandler(supplierCode, name, contactName, phone, email, address);
   
   // 返回结果
   ctx.body = result;

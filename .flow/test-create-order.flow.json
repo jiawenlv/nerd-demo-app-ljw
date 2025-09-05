@@ -1,0 +1,689 @@
+{
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "id": "fca1f808c6a82650e2f15e6b9227fbca",
+      "name": "StartOrderProcess",
+      "type": "start",
+      "desc": "开始下单流程，接收用户下单请求参数",
+      "inputs": {
+        "UserId": {
+          "type": "string",
+          "desc": "用户ID",
+          "value": "123131231"
+        },
+        "GoodsId": {
+          "type": "string",
+          "desc": "商品ID",
+          "value": "1"
+        },
+        "Quantity": {
+          "type": "number",
+          "desc": "购买数量",
+          "value": 4
+        }
+      },
+      "nextNodes": [
+        "CheckGoodsStock"
+      ]
+    },
+    {
+      "id": "4043ce445c7db83cd94f4d843e94faa9",
+      "name": "EndStockInsufficient",
+      "type": "end",
+      "desc": "库存不足结束节点",
+      "inputs": {
+        "PriceData": {
+          "type": "array",
+          "desc": "商品价格查询结果",
+          "value": ""
+        }
+      },
+      "outputs": {
+        "Code": {
+          "type": "string",
+          "desc": "响应状态码",
+          "value": "400",
+          "builtinAttrName": "code",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "Message": {
+          "type": "string",
+          "desc": "响应消息",
+          "value": "库存不足",
+          "builtinAttrName": "message",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "Data": {
+          "type": "object",
+          "desc": "响应数据",
+          "value": {
+            "CurrentStock": "$.ParseStockResult.outputs.CurrentStock",
+            "RequestQuantity": "$.StartOrderProcess.inputs.Quantity"
+          },
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      }
+    },
+    {
+      "id": "691a44ebef5997672bd40097c212e966",
+      "name": "CheckGoodsStock",
+      "type": "customSQL",
+      "desc": "检查商品库存是否充足",
+      "inputs": {
+        "GoodsId": {
+          "type": "string",
+          "desc": "商品ID",
+          "value": "$.StartOrderProcess.inputs.GoodsId"
+        }
+      },
+      "outputs": {
+        "StockData": {
+          "type": "array",
+          "desc": "商品库存查询结果",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "goods",
+        "sql": "SELECT \"id\", \"stock_quantity\" FROM \"goods\" WHERE \"id\" = '${GoodsId}'"
+      },
+      "nextNodes": [
+        "ParseStockResult"
+      ]
+    },
+    {
+      "id": "96040f50162cd23cf798f1f76a5870c2",
+      "name": "ParseStockResult",
+      "type": "code",
+      "desc": "解析库存查询结果",
+      "inputs": {
+        "StockData": {
+          "type": "array",
+          "desc": "库存查询结果数据",
+          "value": "$.CheckGoodsStock.outputs.StockData"
+        },
+        "RequestQuantity": {
+          "type": "integer",
+          "desc": "请求购买数量",
+          "value": "$.StartOrderProcess.inputs.Quantity"
+        }
+      },
+      "outputs": {
+        "CurrentStock": {
+          "type": "integer",
+          "desc": "当前库存数量",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "IsStockSufficient": {
+          "type": "boolean",
+          "desc": "库存是否充足",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "parseStockResult.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "ValidateStockCondition"
+      ]
+    },
+    {
+      "id": "19d24eb3bab54c71160ea9da693e05e6",
+      "name": "ValidateStockCondition",
+      "type": "condition",
+      "desc": "验证库存条件，决定是否继续下单流程",
+      "inputs": {
+        "IsStockSufficient": {
+          "type": "boolean",
+          "desc": "库存是否充足",
+          "value": "$.ParseStockResult.outputs.IsStockSufficient"
+        }
+      },
+      "configs": {
+        "conditionGroups": [
+          {
+            "conditions": [
+              {
+                "left": "${IsStockSufficient}",
+                "operator": "isTrue",
+                "right": true
+              }
+            ],
+            "relationship": "AND",
+            "handleId": "78001ca24251408ea0387a95f6798b9b",
+            "nextNode": "GetGoodsPrice"
+          },
+          {
+            "conditions": [
+              {
+                "left": "${IsStockSufficient}",
+                "operator": "isFalse",
+                "right": true
+              }
+            ],
+            "relationship": "AND",
+            "handleId": "28388523b8e74d499e7be4f224f91acb",
+            "isDefaultBranch": true,
+            "nextNode": "EndStockInsufficient"
+          }
+        ],
+        "defaultNextNode": "EndStockInsufficient"
+      }
+    },
+    {
+      "id": "de04eb4c44006b654c329851b71f1b9b",
+      "name": "GetGoodsPrice",
+      "type": "customSQL",
+      "desc": "获取商品价格信息",
+      "inputs": {
+        "GoodsId": {
+          "type": "string",
+          "desc": "商品ID",
+          "value": "$.StartOrderProcess.inputs.GoodsId"
+        }
+      },
+      "outputs": {
+        "PriceData": {
+          "type": "array",
+          "desc": "商品价格查询结果",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "goods",
+        "sql": "SELECT \"id\", \"price\" FROM \"goods\" WHERE \"id\" = '${GoodsId}'"
+      },
+      "nextNodes": [
+        "ParseGoodsPrice"
+      ]
+    },
+    {
+      "id": "90d8e63e95ef1b15864b67ba1c2bfc6f",
+      "name": "ParseGoodsPrice",
+      "type": "code",
+      "desc": "解析商品价格信息",
+      "inputs": {
+        "PriceData": {
+          "type": "array",
+          "desc": "价格查询结果数据",
+          "value": "$.GetGoodsPrice.outputs.PriceData"
+        }
+      },
+      "outputs": {
+        "GoodsPrice": {
+          "type": "number",
+          "desc": "商品单价",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "parseGoodsPrice.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "CalculateOrderAmount"
+      ]
+    },
+    {
+      "id": "5153c555e17b5fdb68f4ab43791eb23f",
+      "name": "CalculateOrderAmount",
+      "type": "code",
+      "desc": "计算订单总金额",
+      "inputs": {
+        "GoodsPrice": {
+          "type": "number",
+          "desc": "商品单价",
+          "value": "$.ParseGoodsPrice.outputs.GoodsPrice"
+        },
+        "Quantity": {
+          "type": "integer",
+          "desc": "购买数量",
+          "value": "$.StartOrderProcess.inputs.Quantity"
+        }
+      },
+      "outputs": {
+        "TotalAmount": {
+          "type": "number",
+          "desc": "订单总金额",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "calculateOrderAmount.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "GenerateOrderNumber"
+      ]
+    },
+    {
+      "id": "a9479eb906e7b08ef2bbbb5cdbd0bab8",
+      "name": "GenerateOrderNumber",
+      "type": "code",
+      "desc": "生成唯一订单编号",
+      "inputs": {
+        "TotalAmount": {
+          "type": "number",
+          "desc": "订单总金额",
+          "value": "$.CalculateOrderAmount.outputs.TotalAmount"
+        }
+      },
+      "outputs": {
+        "OrderNumber": {
+          "type": "string",
+          "desc": "生成的订单编号",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "generateOrderNumber.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "CreateOrderRecord"
+      ]
+    },
+    {
+      "id": "121d06e64ea1b03984d3c50994cca0fa",
+      "name": "CreateOrderRecord",
+      "type": "customSQL",
+      "desc": "创建订单主记录",
+      "inputs": {
+        "UserId": {
+          "type": "string",
+          "desc": "用户ID",
+          "value": "$.StartOrderProcess.inputs.UserId"
+        },
+        "OrderNumber": {
+          "type": "string",
+          "desc": "订单编号",
+          "value": "$.GenerateOrderNumber.outputs.OrderNumber"
+        },
+        "TotalAmount": {
+          "type": "number",
+          "desc": "订单总金额",
+          "value": "$.CalculateOrderAmount.outputs.TotalAmount"
+        }
+      },
+      "outputs": {
+        "OrderData": {
+          "type": "array",
+          "desc": "创建的订单数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "order",
+        "sql": "INSERT INTO \"order\" (\"id\", \"user_id\", \"order_number\", \"total_amount\", \"status\", \"created_at\", \"updated_at\") VALUES (gen_random_uuid()::varchar(64), '${UserId}', '${OrderNumber}', ${TotalAmount}, 'pending', NOW(), NOW()) RETURNING \"id\""
+      },
+      "nextNodes": [
+        "ParseOrderId"
+      ]
+    },
+    {
+      "id": "75efe56c31d9ff2777b5250aabfa48ff",
+      "name": "ParseOrderId",
+      "type": "code",
+      "desc": "解析创建的订单ID",
+      "inputs": {
+        "OrderData": {
+          "type": "array",
+          "desc": "订单创建结果数据",
+          "value": "$.CreateOrderRecord.outputs.OrderData"
+        }
+      },
+      "outputs": {
+        "OrderId": {
+          "type": "string",
+          "desc": "订单ID",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "parseOrderId.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "CreateOrderItem"
+      ]
+    },
+    {
+      "id": "d3f67834752f975f31022ec82bbd36ee",
+      "name": "CreateOrderItem",
+      "type": "customSQL",
+      "desc": "创建订单明细项",
+      "inputs": {
+        "OrderId": {
+          "type": "string",
+          "desc": "订单ID",
+          "value": "$.ParseOrderId.outputs.OrderId"
+        },
+        "GoodsId": {
+          "type": "string",
+          "desc": "商品ID",
+          "value": "$.StartOrderProcess.inputs.GoodsId"
+        },
+        "Quantity": {
+          "type": "integer",
+          "desc": "购买数量",
+          "value": "$.StartOrderProcess.inputs.Quantity"
+        },
+        "GoodsPrice": {
+          "type": "number",
+          "desc": "商品单价",
+          "value": "$.ParseGoodsPrice.outputs.GoodsPrice"
+        }
+      },
+      "outputs": {
+        "OrderItemData": {
+          "type": "array",
+          "desc": "创建的订单明细数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "order_item",
+        "sql": "INSERT INTO \"order_item\" (\"id\", \"order_id\", \"goods_id\", \"quantity\", \"price_at_purchase\", \"subtotal\", \"created_at\", \"updated_at\") VALUES (gen_random_uuid()::varchar(64), '${OrderId}', '${GoodsId}', ${Quantity}, ${GoodsPrice}, ${Quantity} * ${GoodsPrice}, NOW(), NOW()) RETURNING \"id\""
+      },
+      "nextNodes": [
+        "CheckWarehouseStock"
+      ]
+    },
+    {
+      "id": "a1b2c3d4e5f67890abcdef1234567890",
+      "name": "CheckWarehouseStock",
+      "type": "customSQL",
+      "desc": "检查仓库库存信息",
+      "inputs": {
+        "GoodsId": {
+          "type": "string",
+          "desc": "商品ID",
+          "value": "$.StartOrderProcess.inputs.GoodsId"
+        }
+      },
+      "outputs": {
+        "WarehouseStockData": {
+          "type": "array",
+          "desc": "仓库库存查询结果",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "warehouse",
+        "sql": "SELECT \"id\", \"goods_id\", \"warehouse_name\", \"stock_quantity\", \"location\" FROM \"warehouse\" WHERE \"goods_id\" = '${GoodsId}' AND \"stock_quantity\" > 0 ORDER BY \"stock_quantity\" DESC"
+      },
+      "nextNodes": [
+        "ParseWarehouseStock"
+      ]
+    },
+    {
+      "id": "b2c3d4e5f67890abcdef1234567890a1",
+      "name": "ParseWarehouseStock",
+      "type": "code",
+      "desc": "解析仓库库存信息并选择最优仓库",
+      "inputs": {
+        "WarehouseStockData": {
+          "type": "array",
+          "desc": "仓库库存查询结果",
+          "value": "$.CheckWarehouseStock.outputs.WarehouseStockData"
+        },
+        "Quantity": {
+          "type": "integer",
+          "desc": "购买数量",
+          "value": "$.StartOrderProcess.inputs.Quantity"
+        }
+      },
+      "outputs": {
+        "SelectedWarehouseId": {
+          "type": "string",
+          "desc": "选择的仓库ID",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "SelectedWarehouseName": {
+          "type": "string",
+          "desc": "选择的仓库名称",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "parseWarehouseStock.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "UpdateWarehouseStock"
+      ]
+    },
+    {
+      "id": "c3d4e5f67890abcdef1234567890a1b2",
+      "name": "UpdateWarehouseStock",
+      "type": "customSQL",
+      "desc": "更新仓库库存数量",
+      "inputs": {
+        "WarehouseId": {
+          "type": "string",
+          "desc": "仓库ID",
+          "value": "$.ParseWarehouseStock.outputs.SelectedWarehouseId"
+        },
+        "Quantity": {
+          "type": "integer",
+          "desc": "购买数量",
+          "value": "$.StartOrderProcess.inputs.Quantity"
+        }
+      },
+      "outputs": {
+        "WarehouseUpdateResult": {
+          "type": "array",
+          "desc": "仓库库存更新结果",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "warehouse",
+        "sql": "UPDATE \"warehouse\" SET \"stock_quantity\" = \"stock_quantity\" - ${Quantity}, \"updated_at\" = NOW() WHERE \"id\" = '${WarehouseId}' RETURNING \"id\", \"stock_quantity\""
+      },
+      "nextNodes": [
+        "CreateWarehouseRecord"
+      ]
+    },
+    {
+      "id": "d4e5f67890abcdef1234567890a1b2c3",
+      "name": "CreateWarehouseRecord",
+      "type": "customSQL",
+      "desc": "创建仓库出库记录",
+      "inputs": {
+        "OrderId": {
+          "type": "string",
+          "desc": "订单ID",
+          "value": "$.ParseOrderId.outputs.OrderId"
+        },
+        "WarehouseId": {
+          "type": "string",
+          "desc": "仓库ID",
+          "value": "$.ParseWarehouseStock.outputs.SelectedWarehouseId"
+        },
+        "Quantity": {
+          "type": "integer",
+          "desc": "出库数量",
+          "value": "$.StartOrderProcess.inputs.Quantity"
+        }
+      },
+      "outputs": {
+        "WarehouseRecordData": {
+          "type": "array",
+          "desc": "仓库出库记录数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "warehouse_record",
+        "sql": "INSERT INTO \"warehouse_record\" (\"id\", \"order_id\", \"warehouse_id\", \"outbound_quantity\", \"record_type\", \"created_at\") VALUES (gen_random_uuid()::varchar(64), '${OrderId}', '${WarehouseId}', ${Quantity}, 'outbound', NOW()) RETURNING \"id\""
+      },
+      "nextNodes": [
+        "UpdateGoodsStock"
+      ]
+    },
+    {
+      "id": "99a9d96cded45de9480e4493bb614f7d",
+      "name": "UpdateGoodsStock",
+      "type": "customSQL",
+      "desc": "更新商品库存数量",
+      "inputs": {
+        "GoodsId": {
+          "type": "string",
+          "desc": "商品ID",
+          "value": "$.StartOrderProcess.inputs.GoodsId"
+        },
+        "Quantity": {
+          "type": "integer",
+          "desc": "购买数量",
+          "value": "$.StartOrderProcess.inputs.Quantity"
+        }
+      },
+      "outputs": {
+        "UpdateResult": {
+          "type": "array",
+          "desc": "库存更新结果",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "goods",
+        "sql": "UPDATE \"goods\" SET \"stock_quantity\" = \"stock_quantity\" - ${Quantity}, \"updated_at\" = NOW() WHERE \"id\" = '${GoodsId}' RETURNING \"id\", \"stock_quantity\""
+      },
+      "nextNodes": [
+        "EndOrderSuccess"
+      ]
+    },
+    {
+      "id": "3ecd23bfc2a403104ebf1acdb487f89b",
+      "name": "EndOrderSuccess",
+      "type": "end",
+      "desc": "订单创建成功结束节点",
+      "inputs": {
+        "UpdateResult": {
+          "type": "array",
+          "desc": "库存更新结果",
+          "value": "$.UpdateGoodsStock.outputs.UpdateResult"
+        }
+      },
+      "outputs": {
+        "Code": {
+          "type": "string",
+          "desc": "响应状态码",
+          "value": "200",
+          "builtinAttrName": "code",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "Message": {
+          "type": "string",
+          "desc": "响应消息",
+          "value": "订单创建成功",
+          "builtinAttrName": "message",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "Data": {
+          "type": "object",
+          "desc": "响应数据",
+          "value": {
+            "OrderId": "$.ParseOrderId.outputs.OrderId",
+            "OrderNumber": "$.GenerateOrderNumber.outputs.OrderNumber",
+            "TotalAmount": "$.CalculateOrderAmount.outputs.TotalAmount",
+            "WarehouseId": "$.ParseWarehouseStock.outputs.SelectedWarehouseId",
+            "WarehouseName": "$.ParseWarehouseStock.outputs.SelectedWarehouseName"
+          },
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      }
+    }
+  ]
+}

@@ -12,6 +12,10 @@ import testQueryRouter from './test-query.js'
 import testDeleteRouter from './test-delete.js'
 import testUpdateRouter from './test-update.js'
 import testCreateSupplierRouter from './test-create-supplier.js'
+import cddRouter from './cdd.js'
+import testRightConditionRouter from './test-right-condition.js'
+import testCreateOrderRouter from './test-create-order.js'
+import testTwoDialogRouter from './test-two-dialog.js'
 
 const router = new Router()
 
@@ -28,5 +32,9 @@ router.use(testQueryRouter.routes())
 router.use(testDeleteRouter.routes())
 router.use(testUpdateRouter.routes())
 router.use(testCreateSupplierRouter.routes())
+router.use(cddRouter.routes())
+router.use(testRightConditionRouter.routes())
+router.use(testCreateOrderRouter.routes())
+router.use(testTwoDialogRouter.routes())
 
 export default router

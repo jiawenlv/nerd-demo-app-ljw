@@ -1,0 +1,169 @@
+{
+  "nodes": {
+    "668fc6e04eab7bcc9dd976f835a0b384": {
+      "x": 150,
+      "y": -450,
+      "width": 624,
+      "height": 410,
+      "inputs": {
+        "UserId": "9bbec8d4a03742918465d8edea7a5052",
+        "GoodsId": "a64b862f6e9f444d92f94bb1d8b3917b",
+        "Quantity": "56ecaa79c3ab4d82acf067ecd2afa12a"
+      }
+    },
+    "2e7540a3e026c98b21b7db3fe339dc08": {
+      "x": 4095,
+      "y": 600,
+      "width": 688,
+      "height": 507,
+      "inputs": {
+        "UserId": "f3d89a5872844d8a95e657eb8fda8618",
+        "GoodsId": "90421f1bfd0c4d00bfaf8935ccb0c080",
+        "Quantity": "2c7d15fb29634f92bc39a9df7df475f8"
+      },
+      "outputs": {
+        "Code": "707198b3f5994cae8015d44ac25abad4",
+        "Message": "48c133137fa544a8bd50d75a66467c97",
+        "Data": "8ef93adddc794e40a00d7e84dc5dbaf6"
+      }
+    },
+    "4679f4c316cc41323d212fd144164bf3": {
+      "x": 1050,
+      "y": -450,
+      "width": 688,
+      "height": 1051,
+      "inputs": {
+        "UserId": "cc821903667945c085b3385bef81dadf",
+        "GoodsId": "63f832d8968e434b9807953818873542",
+        "Quantity": "64cfa300d41e46f598ab710f084ebed0"
+      },
+      "outputs": {
+        "ValidatedUserId": "6b9ecf09d33f40d486bffbc6ec97f96f",
+        "ValidatedGoodsId": "59ca8bcf661a46d8a843d29127bd280d",
+        "ValidatedQuantity": "699fcabf145b4208ad2dff0b98c235ed"
+      }
+    },
+    "8cad49d3956a84eb0cd9edca1438f2e3": {
+      "x": 1950,
+      "y": -450,
+      "width": 688,
+      "height": 803,
+      "inputs": {
+        "GoodsId": "07ce426d41864c7c8e9b7e2b4fc98958"
+      },
+      "outputs": {
+        "StockData": "7c4c91b0c9a44aee8178a9fac95f9ea2"
+      }
+    },
+    "49f8aa8c5a76bb1f18203a4eb802e376": {
+      "x": 3045,
+      "y": -135,
+      "width": 646,
+      "height": 607,
+      "inputs": {
+        "StockData": "870fbe5a0946418e93fca825c2317fe1",
+        "Quantity": "d22934bc2e43468d8f9dd5ceea268b1d"
+      },
+      "handleIds": {
+        "condition_0": "9606d2ae744f4109a16287c753bc823e",
+        "default": "6b85dd101f3a42cba40f63f3b0bf3a30"
+      }
+    },
+    "deec958c244212ac4d9200edbab2522f": {
+      "x": 3555,
+      "y": -1575,
+      "width": 688,
+      "height": 803,
+      "inputs": {
+        "GoodsId": "e1eb536aa27f4518b086f45df331c410"
+      },
+      "outputs": {
+        "PriceData": "f3ddd133024542ba95a2bd25fe3a307d"
+      }
+    },
+    "6c67ca3ec1c06e66da08eb52418223c8": {
+      "x": 4650,
+      "y": -1550,
+      "width": 688,
+      "height": 855,
+      "inputs": {
+        "UserId": "8209be464bae4a0f813664cbff6f0c5f"
+      },
+      "outputs": {
+        "OrderNumber": "918b25e5739f4abd90897cee4198f1af"
+      }
+    },
+    "f92092dbed7033b549b65df8832d170a": {
+      "x": 5550,
+      "y": -1550,
+      "width": 688,
+      "height": 993,
+      "inputs": {
+        "PriceData": "bea9cdbbd9784dd3a92a068e5a32fb80",
+        "Quantity": "e84ef98c64934999a7c4d43f576172c5"
+      },
+      "outputs": {
+        "TotalAmount": "554b4300717e4a1a8179cf872d386448",
+        "UnitPrice": "25c78e74bb534dcc9bdb08a7103c2979"
+      }
+    },
+    "274c7d49e38c32be4353690e79c19764": {
+      "x": 6450,
+      "y": -1550,
+      "width": 688,
+      "height": 919,
+      "inputs": {
+        "UserId": "2f84ef6b1e0c40b38e5f5a970169f138",
+        "OrderNumber": "44dbc166e9394e219c2fed41dc9b3d38",
+        "TotalAmount": "e48fee28b61f4cc58353421576d9bcb2"
+      },
+      "outputs": {
+        "OrderId": "43647e4e064c4db0bfb83da94e8dc7f2"
+      }
+    },
+    "5170e65e935113f5c5674b1c83b731a7": {
+      "x": 7350,
+      "y": -1550,
+      "width": 688,
+      "height": 741,
+      "inputs": {
+        "OrderId": "888530724e134292825ee96a5ecd40ad",
+        "GoodsId": "f53eeb01ebc6448296d89774c25a447b",
+        "Quantity": "67cf787599944de89daa73f808e0acf1",
+        "UnitPrice": "af6566c8e8714838913185c79ddf0fe6",
+        "Subtotal": "e7e50471a0cc4055966cb844b9742aa5"
+      },
+      "outputs": {
+        "OrderItemId": "e359fb4fec644a488ceef9b2a8b1e8ac"
+      }
+    },
+    "56366a54022e0b47d52dd987237ae815": {
+      "x": 8250,
+      "y": -1550,
+      "width": 688,
+      "height": 618,
+      "inputs": {
+        "GoodsId": "2edcee1b184145fab0a1a6e5a41120ff",
+        "Quantity": "80bdd9dd40184885b2d88204536c2897"
+      },
+      "outputs": {
+        "UpdatedRows": "32f82442b4404da8ab781b3ddb3fe6e2"
+      }
+    },
+    "6976acb9e6add5822d03fc57faa734fa": {
+      "x": 9150,
+      "y": -1550,
+      "width": 784,
+      "height": 442,
+      "inputs": {
+        "OrderId": "3d2229b32360494f8d99f459ea007230",
+        "OrderNumber": "854cf0600066497083b8bb24ac5be6d6"
+      },
+      "outputs": {
+        "Code": "b065c5f4680346b8b59f0b6e5dcbb26f",
+        "Message": "29ed1a5df75043c4962a294eb26a78f3",
+        "Data": "c04e628b8f1d4049b86bb8cd22259493"
+      }
+    }
+  }
+}

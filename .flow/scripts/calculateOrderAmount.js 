@@ -1,0 +1,9 @@
+export default function main(inputs) {
+  const unitPrice = inputs.PriceData[0].price;
+  const totalAmount = unitPrice * inputs.Quantity;
+
+  return {
+    TotalAmount: totalAmount,
+    UnitPrice: unitPrice
+  };
+}

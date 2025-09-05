@@ -1,0 +1,139 @@
+{
+  "nodes": {
+    "01b8ec2fce69aaf45cbe39ea78bfeab5": {
+      "x": 150,
+      "y": 150,
+      "width": 624,
+      "height": 606,
+      "inputs": {
+        "WarehouseName": "91c3bc75ecf7444992276c52cd64d58b",
+        "WarehouseCode": "8b3ff3868c754049aee21dcf1f006598",
+        "WarehouseAddress": "8171b0bc77b3415ea235883cd888df76",
+        "ContactPerson": "c4835be154174642a81d605c676c1c15",
+        "ContactPhone": "3dca47bb4f0842ed831d77f97ddb4daf",
+        "Capacity": "b3a26fc381c74aa4ac4bc18fa49746c2",
+        "Status": "5917bda28fe44ecf8c9adae918e4f442"
+      }
+    },
+    "c08d7acd75a45445406f6b33130ed0ea": {
+      "x": 1050,
+      "y": 150,
+      "width": 688,
+      "height": 1339,
+      "inputs": {
+        "WarehouseName": "e7bb1e300c8e426b81d1ab0fd047e10d",
+        "WarehouseCode": "a16d405653fb416a9ac086e8efd3591f",
+        "WarehouseAddress": "24f33c3fc6ba418bbf4583fa149eb9e0",
+        "ContactPerson": "cc0f9abef829476c86c25dcd9cc94ddd",
+        "ContactPhone": "1360bc3100d741ecb072ce9f3807263b",
+        "Capacity": "c5ad36051f574c6a9102ff1e6f13c860",
+        "Status": "a33f7a9521134b4bba4ce357b6a16372"
+      },
+      "outputs": {
+        "ValidatedWarehouseName": "be8728db53464dda8900006a17dda6a1",
+        "ValidatedWarehouseCode": "383cf91128db4a2188431b6cec8f172c",
+        "ValidatedWarehouseAddress": "29199b243d0f473e978ca814a9d01ad1",
+        "ValidatedContactPerson": "96b5e5c5e33c46b6be38c654de5626a4",
+        "ValidatedContactPhone": "eada04a785df4867ada8402728ed795e",
+        "ValidatedCapacity": "6ec5456d540e47b08428a9925c7268e1",
+        "ValidatedStatus": "fc1dcf73c865471da38f0392fe545f63"
+      }
+    },
+    "cedfe68574aa712e622c2854a9401703": {
+      "x": 1950,
+      "y": 150,
+      "width": 688,
+      "height": 691,
+      "inputs": {
+        "WarehouseCode": "c5e3ba6bb27145bea9dc3d11c68ece96"
+      },
+      "outputs": {
+        "CheckResult": "8f55a2e6ded14187a2ca9c1e0df8a36c"
+      }
+    },
+    "61f12f9329541be344ab0c935eb665ad": {
+      "x": 2850,
+      "y": 150,
+      "width": 688,
+      "height": 847,
+      "inputs": {
+        "CheckResult": "10684ae75de14510bbef3b39128571f1"
+      },
+      "outputs": {
+        "CodeExists": "90050188bfc04e7491be367f2daed5a2"
+      }
+    },
+    "675dca71852868eba3f154c6544ae6e5": {
+      "x": 3750,
+      "y": 150,
+      "width": 624,
+      "height": 739,
+      "inputs": {
+        "CodeExists": "a6ebf86ae03d408e90085181276f73b9"
+      },
+      "handleIds": {
+        "condition_0": "4a382d4b9e1a4421b50f731663cad8d6",
+        "condition_1": "dca04dc3ec294e049f8d1f56c71e95bd",
+        "default": "c64f44c59ca948c482d3a99a918bad36"
+      }
+    },
+    "e3ee42bd9a9652ca549ed77da4074a23": {
+      "x": 4650,
+      "y": 700,
+      "width": 688,
+      "height": 937,
+      "inputs": {
+        "WarehouseName": "6bfa6c892a5c4a0da6ab9c9f55e7985c",
+        "WarehouseCode": "53dd105432944cd592622c909d2f27f6",
+        "WarehouseAddress": "9d70fca9ddbb42beaf6960b33667d17d",
+        "ContactPerson": "4c30aaa80f184f05aa123a44ee9a8573",
+        "ContactPhone": "3e60ae20980b469eba4669136ba22794",
+        "Capacity": "83784276cee44bc394660700263804e5",
+        "Status": "0a34b59e3add4a2587b8c7bf692999f7"
+      },
+      "outputs": {
+        "CreatedWarehouse": "c59981d0b8c44171a627ddb3e80eb30a"
+      }
+    },
+    "52218f461a86349fd2adc394da68fc33": {
+      "x": 4650,
+      "y": -400,
+      "width": 688,
+      "height": 515,
+      "inputs": {
+        "CreatedWarehouse": "33b8f5415836415fbce0de8aabb77828"
+      },
+      "outputs": {
+        "code": "bc5b6d19a6994d8b86a4469e5cf57a64",
+        "data": "659f1a4c6c5e44a69a06c40056b4b90a",
+        "message": "73340287c4804af5aed0957faa6bc6a7"
+      }
+    },
+    "38e176099d986e943fb37b3cff6bed33": {
+      "x": 5550,
+      "y": 700,
+      "width": 688,
+      "height": 847,
+      "inputs": {
+        "CreatedWarehouse": "a296d0a8a2c24bea844c13aca9e6baba"
+      },
+      "outputs": {
+        "WarehouseData": "92a6751634f146899e89626c3c4069d6"
+      }
+    },
+    "67b06d052811e4478342663e7fd74699": {
+      "x": 6450,
+      "y": 700,
+      "width": 688,
+      "height": 515,
+      "inputs": {
+        "WarehouseData": "3e6c62689e814f6f85a55e094264b83c"
+      },
+      "outputs": {
+        "code": "e583253f28b24078b7adb184f35804e9",
+        "data": "ff369f5b7fc84f408aa69ac2a0d8d5d4",
+        "message": "c4b1f9eb1530434ba7828edff9a8bbca"
+      }
+    }
+  }
+}

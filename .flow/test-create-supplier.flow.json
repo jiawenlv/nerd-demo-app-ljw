@@ -2,113 +2,63 @@
   "version": "1.0.0",
   "nodes": [
     {
-      "id": "3b6b487613cbdbcdcdebe1e0d164b0e6",
-      "name": "Start",
+      "id": "e69373be49d88f56d53bd1039b095367",
+      "name": "CreateSupplierStart",
       "type": "start",
-      "desc": "开始节点，接收供应商基本信息",
+      "desc": "创建供应商开始",
       "inputs": {
-        "SupplierCode": {
+        "supplierCode": {
           "type": "string",
           "desc": "供应商编码",
-          "value": "LJW"
+          "value": "1111"
         },
-        "SupplierName": {
+        "name": {
           "type": "string",
           "desc": "供应商名称",
-          "value": "吕嘉文"
+          "value": "2222"
         },
-        "ContactName": {
+        "contactName": {
           "type": "string",
           "desc": "联系人姓名",
-          "value": "吕文"
+          "value": "333"
         },
-        "Phone": {
+        "phone": {
           "type": "string",
           "desc": "联系电话",
-          "value": "111"
+          "value": "444"
         },
-        "Email": {
+        "email": {
           "type": "string",
-          "desc": "邮箱地址",
-          "value": "22"
+          "desc": "邮箱",
+          "value": "d@gmail.com"
         },
-        "Address": {
+        "address": {
           "type": "string",
-          "desc": "地址信息",
-          "value": "111@abc.com"
+          "desc": "地址",
+          "value": "666"
         }
       },
       "nextNodes": [
-        "ValidateInput"
+        "ValidateSupplierInput"
       ]
     },
     {
-      "id": "df14b2c0980b00a7a33955c0d055c011",
-      "name": "HandleCreateFailure",
-      "type": "code",
-      "desc": "处理创建失败的逻辑",
-      "inputs": {
-        "GeneratedSupplierId": {
-          "type": "string",
-          "desc": "生成的供应商ID",
-          "value": "$.GenerateSupplierId.outputs.GeneratedSupplierId"
-        },
-        "ValidatedSupplierName": {
-          "type": "string",
-          "desc": "验证后的供应商名称",
-          "value": "$.ValidateInput.outputs.ValidatedSupplierName"
-        }
-      },
-      "outputs": {
-        "ErrorMessage": {
-          "type": "string",
-          "desc": "错误消息",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        },
-        "ErrorCode": {
-          "type": "string",
-          "desc": "错误代码",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        }
-      },
-      "configs": {
-        "file": {
-          "name": "handleCreateFailure.js"
-        },
-        "dependencies": []
-      },
-      "nextNodes": [
-        "EndFailure"
-      ]
-    },
-    {
-      "id": "51afdf177460609adb98bbbc8b444d04",
-      "name": "EndFailure",
+      "id": "87d8af08458586afb2c3665785bfedab",
+      "name": "ValidationFailed",
       "type": "end",
-      "desc": "失败结束节点",
+      "desc": "验证失败响应",
       "inputs": {
-        "ErrorMessage": {
-          "type": "string",
-          "desc": "错误消息",
-          "value": "$.HandleCreateFailure.outputs.ErrorMessage"
-        },
-        "ErrorCode": {
-          "type": "string",
-          "desc": "错误代码",
-          "value": "$.HandleCreateFailure.outputs.ErrorCode"
+        "checkSupplierExistsExistingSupplier": {
+          "type": "array",
+          "desc": "已存在的供应商记录",
+          "value": ""
         }
       },
       "outputs": {
         "code": {
           "type": "number",
-          "desc": "响应状态码",
-          "value": 500,
+          "desc": "错误状态码",
+          "value": "400",
           "builtinAttrName": "code",
           "isDynamic": true,
           "isBuiltin": true,
@@ -117,11 +67,7 @@
         },
         "data": {
           "type": "object",
-          "desc": "响应数据",
-          "value": {
-            "error": "$.HandleCreateFailure.outputs.ErrorMessage",
-            "errorCode": "$.HandleCreateFailure.outputs.ErrorCode"
-          },
+          "desc": "错误数据",
           "builtinAttrName": "data",
           "isDynamic": true,
           "isBuiltin": true,
@@ -130,8 +76,7 @@
         },
         "message": {
           "type": "string",
-          "desc": "响应消息",
-          "value": "供应商创建失败",
+          "desc": "错误信息",
           "builtinAttrName": "message",
           "isDynamic": true,
           "isBuiltin": true,
@@ -141,180 +86,46 @@
       }
     },
     {
-      "id": "980fe08b01ecc283a775dfecd7bc09b0",
-      "name": "ValidateInput",
-      "type": "code",
-      "desc": "验证输入参数的有效性",
-      "inputs": {
-        "SupplierCode": {
-          "type": "string",
-          "desc": "供应商编码",
-          "value": "$.Start.inputs.SupplierCode"
-        },
-        "SupplierName": {
-          "type": "string",
-          "desc": "供应商名称",
-          "value": "$.Start.inputs.SupplierName"
-        },
-        "ContactName": {
-          "type": "string",
-          "desc": "联系人姓名",
-          "value": "$.Start.inputs.ContactName"
-        },
-        "Phone": {
-          "type": "string",
-          "desc": "联系电话",
-          "value": "$.Start.inputs.Phone"
-        },
-        "Email": {
-          "type": "string",
-          "desc": "邮箱地址",
-          "value": "$.Start.inputs.Email"
-        },
-        "Address": {
-          "type": "string",
-          "desc": "地址信息",
-          "value": "$.Start.inputs.Address"
-        }
-      },
-      "outputs": {
-        "ValidatedSupplierCode": {
-          "type": "string",
-          "desc": "验证后的供应商编码",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        },
-        "ValidatedSupplierName": {
-          "type": "string",
-          "desc": "验证后的供应商名称",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        },
-        "ValidatedContactName": {
-          "type": "string",
-          "desc": "验证后的联系人姓名",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        },
-        "ValidatedPhone": {
-          "type": "string",
-          "desc": "验证后的联系电话",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        },
-        "ValidatedEmail": {
-          "type": "string",
-          "desc": "验证后的邮箱地址",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        },
-        "ValidatedAddress": {
-          "type": "string",
-          "desc": "验证后的地址信息",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        }
-      },
-      "configs": {
-        "file": {
-          "name": "validateInput.js"
-        },
-        "dependencies": []
-      },
-      "nextNodes": [
-        "GenerateSupplierId"
-      ]
-    },
-    {
-      "id": "ef0b76ebb0a4c94f5427d12225a2af74",
-      "name": "GenerateSupplierId",
-      "type": "code",
-      "desc": "生成唯一的供应商ID",
-      "inputs": {
-        "ValidatedSupplierCode": {
-          "type": "string",
-          "desc": "验证后的供应商编码",
-          "value": "$.ValidateInput.outputs.ValidatedSupplierCode"
-        }
-      },
-      "outputs": {
-        "GeneratedSupplierId": {
-          "type": "string",
-          "desc": "生成的唯一供应商ID",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        }
-      },
-      "configs": {
-        "file": {
-          "name": "generateSupplierId.js"
-        },
-        "dependencies": []
-      },
-      "nextNodes": [
-        "CreateSupplierRecord"
-      ]
-    },
-    {
-      "id": "80df1ceb7edaa47af7c7637409312352",
+      "id": "85de90574b05e110f59c9d869055089b",
       "name": "CreateSupplierRecord",
       "type": "customSQL",
-      "desc": "在数据库中创建供应商记录",
+      "desc": "创建供应商记录",
       "inputs": {
-        "GeneratedSupplierId": {
+        "code": {
           "type": "string",
-          "desc": "生成的供应商ID",
-          "value": "$.GenerateSupplierId.outputs.GeneratedSupplierId"
+          "desc": "供应商编码",
+          "value": "$.CreateSupplierStart.inputs.supplierCode"
         },
-        "ValidatedSupplierCode": {
+        "name": {
           "type": "string",
-          "desc": "验证后的供应商编码",
-          "value": "$.ValidateInput.outputs.ValidatedSupplierCode"
+          "desc": "供应商名称",
+          "value": "$.CreateSupplierStart.inputs.name"
         },
-        "ValidatedSupplierName": {
+        "contactName": {
           "type": "string",
-          "desc": "验证后的供应商名称",
-          "value": "$.ValidateInput.outputs.ValidatedSupplierName"
+          "desc": "联系人姓名",
+          "value": "$.CreateSupplierStart.inputs.contactName"
         },
-        "ValidatedContactName": {
+        "phone": {
           "type": "string",
-          "desc": "验证后的联系人姓名",
-          "value": "$.ValidateInput.outputs.ValidatedContactName"
+          "desc": "联系电话",
+          "value": "$.CreateSupplierStart.inputs.phone"
         },
-        "ValidatedPhone": {
+        "email": {
           "type": "string",
-          "desc": "验证后的联系电话",
-          "value": "$.ValidateInput.outputs.ValidatedPhone"
+          "desc": "邮箱",
+          "value": "$.CreateSupplierStart.inputs.email"
         },
-        "ValidatedEmail": {
+        "address": {
           "type": "string",
-          "desc": "验证后的邮箱地址",
-          "value": "$.ValidateInput.outputs.ValidatedEmail"
-        },
-        "ValidatedAddress": {
-          "type": "string",
-          "desc": "验证后的地址信息",
-          "value": "$.ValidateInput.outputs.ValidatedAddress"
+          "desc": "地址",
+          "value": "$.CreateSupplierStart.inputs.address"
         }
       },
       "outputs": {
-        "CreateResult": {
-          "type": "object",
-          "desc": "创建操作的结果",
+        "createSupplierRecordCreatedSupplier": {
+          "type": "array",
+          "desc": "创建的供应商记录",
           "builtinAttrName": "data",
           "isDynamic": true,
           "isBuiltin": true,
@@ -324,162 +135,29 @@
       },
       "configs": {
         "table": "Supplier",
-        "sql": "INSERT INTO \"Supplier\" (\"id\", \"code\", \"name\", \"contactName\", \"phone\", \"email\", \"address\", \"status\", \"createdAt\", \"updatedAt\") VALUES ('${GeneratedSupplierId}', '${ValidatedSupplierCode}', '${ValidatedSupplierName}', '${ValidatedContactName}', '${ValidatedPhone}', '${ValidatedEmail}', '${ValidatedAddress}', 'active', NOW(), NOW()) RETURNING \"id\""
+        "sql": "INSERT INTO \"Supplier\" (id, code, name, contactName, phone, email, address, status, \"createdAt\", \"updatedAt\") VALUES (gen_random_uuid(), '${code}', '${name}', '${contactName}', '${phone}', '${email}', '${address}', 'active', NOW(), NOW()) RETURNING id, code, name, contactName, phone, email, address, status, \"createdAt\", \"updatedAt\""
       },
       "nextNodes": [
-        "ParseCreateResult"
+        "CreateSuccess"
       ]
     },
     {
-      "id": "4226a2aaab322e276c5f04b5106d3031",
-      "name": "ParseCreateResult",
-      "type": "code",
-      "desc": "解析数据库创建操作的结果",
-      "inputs": {
-        "CreateResult": {
-          "type": "object",
-          "desc": "创建操作的结果",
-          "value": "$.CreateSupplierRecord.outputs.CreateResult"
-        }
-      },
-      "outputs": {
-        "IsCreateSuccess": {
-          "type": "boolean",
-          "desc": "创建是否成功的标志",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        },
-        "CreatedSupplierId": {
-          "type": "string",
-          "desc": "创建的供应商ID",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        }
-      },
-      "configs": {
-        "file": {
-          "name": "parseCreateResult.js"
-        },
-        "dependencies": []
-      },
-      "nextNodes": [
-        "CheckCreateSuccess"
-      ]
-    },
-    {
-      "id": "8e40d897f723c42e675c0ac3a937f6f1",
-      "name": "CheckCreateSuccess",
-      "type": "condition",
-      "desc": "检查供应商创建是否成功",
-      "inputs": {
-        "IsCreateSuccess": {
-          "type": "boolean",
-          "desc": "创建是否成功的标志",
-          "value": "$.ParseCreateResult.outputs.IsCreateSuccess"
-        }
-      },
-      "configs": {
-        "conditionGroups": [
-          {
-            "conditions": [
-              {
-                "left": "${IsCreateSuccess}",
-                "operator": "isTrue",
-                "right": true
-              }
-            ],
-            "relationship": "AND",
-            "handleId": "f6f8ebe7555941ddbe936ebde36ad0e9",
-            "nextNode": "HandleCreateSuccess"
-          },
-          {
-            "conditions": [
-              {
-                "left": "${IsCreateSuccess}",
-                "operator": "isFalse",
-                "right": true
-              }
-            ],
-            "relationship": "AND",
-            "handleId": "4bb6bb60e0c945c4998288b3733c7471",
-            "isDefaultBranch": true,
-            "nextNode": "HandleCreateFailure"
-          }
-        ],
-        "defaultNextNode": "HandleCreateFailure"
-      }
-    },
-    {
-      "id": "335291d9829cc9304d43dd0625909e53",
-      "name": "HandleCreateSuccess",
-      "type": "code",
-      "desc": "处理创建成功的逻辑",
-      "inputs": {
-        "CreatedSupplierId": {
-          "type": "string",
-          "desc": "创建的供应商ID",
-          "value": "$.ParseCreateResult.outputs.CreatedSupplierId"
-        },
-        "ValidatedSupplierName": {
-          "type": "string",
-          "desc": "验证后的供应商名称",
-          "value": "$.ValidateInput.outputs.ValidatedSupplierName"
-        }
-      },
-      "outputs": {
-        "SuccessMessage": {
-          "type": "string",
-          "desc": "成功消息",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        },
-        "SuccessSupplierId": {
-          "type": "string",
-          "desc": "成功的供应商ID",
-          "isDynamic": false,
-          "isBuiltin": false,
-          "editable": true,
-          "removable": true
-        }
-      },
-      "configs": {
-        "file": {
-          "name": "handleCreateSuccess.js"
-        },
-        "dependencies": []
-      },
-      "nextNodes": [
-        "EndSuccess"
-      ]
-    },
-    {
-      "id": "419655ed08185338a013d78a35ff43bf",
-      "name": "EndSuccess",
+      "id": "3f38b407053ff03782e1ddb88de8678f",
+      "name": "CreateSuccess",
       "type": "end",
-      "desc": "成功结束节点",
+      "desc": "创建成功响应",
       "inputs": {
-        "SuccessMessage": {
-          "type": "string",
-          "desc": "成功消息",
-          "value": "$.HandleCreateSuccess.outputs.SuccessMessage"
-        },
-        "SuccessSupplierId": {
-          "type": "string",
-          "desc": "成功的供应商ID",
-          "value": "$.HandleCreateSuccess.outputs.SuccessSupplierId"
+        "createdSupplier": {
+          "type": "array",
+          "desc": "创建的供应商记录",
+          "value": "$.CreateSupplierRecord.outputs.createSupplierRecordCreatedSupplier"
         }
       },
       "outputs": {
         "code": {
           "type": "number",
-          "desc": "响应状态码",
-          "value": 200,
+          "desc": "成功状态码",
+          "value": "201",
           "builtinAttrName": "code",
           "isDynamic": true,
           "isBuiltin": true,
@@ -488,11 +166,7 @@
         },
         "data": {
           "type": "object",
-          "desc": "响应数据",
-          "value": {
-            "message": "$.HandleCreateSuccess.outputs.SuccessMessage",
-            "supplierId": "$.HandleCreateSuccess.outputs.SuccessSupplierId"
-          },
+          "desc": "供应商数据",
           "builtinAttrName": "data",
           "isDynamic": true,
           "isBuiltin": true,
@@ -501,8 +175,249 @@
         },
         "message": {
           "type": "string",
-          "desc": "响应消息",
+          "desc": "成功信息",
           "value": "供应商创建成功",
+          "builtinAttrName": "message",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      }
+    },
+    {
+      "id": "2aca10977f6c68bc70ef625ae700a79d",
+      "name": "ValidateSupplierInput",
+      "type": "code",
+      "desc": "验证供应商输入参数",
+      "inputs": {
+        "code": {
+          "type": "string",
+          "desc": "供应商编码",
+          "value": "$.CreateSupplierStart.inputs.supplierCode"
+        },
+        "name": {
+          "type": "string",
+          "desc": "供应商名称",
+          "value": "$.CreateSupplierStart.inputs.name"
+        },
+        "contactName": {
+          "type": "string",
+          "desc": "联系人姓名",
+          "value": "$.CreateSupplierStart.inputs.contactName"
+        },
+        "phone": {
+          "type": "string",
+          "desc": "联系电话",
+          "value": "$.CreateSupplierStart.inputs.phone"
+        },
+        "email": {
+          "type": "string",
+          "desc": "邮箱",
+          "value": "$.CreateSupplierStart.inputs.email"
+        }
+      },
+      "outputs": {
+        "validateSupplierInputIsValid": {
+          "type": "boolean",
+          "desc": "验证是否通过",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "validateSupplierInputErrorMessage": {
+          "type": "string",
+          "desc": "错误信息",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "dependencies": [],
+        "file": {
+          "name": "validateSupplierInput.js"
+        }
+      },
+      "nextNodes": [
+        "CheckValidationResult"
+      ]
+    },
+    {
+      "id": "35b0ec359a6bb00edc08b4a0bdc8fb20",
+      "name": "CheckValidationResult",
+      "type": "condition",
+      "desc": "检查验证结果",
+      "inputs": {
+        "isValid": {
+          "type": "boolean",
+          "desc": "验证是否通过",
+          "value": "$.ValidateSupplierInput.outputs.validateSupplierInputIsValid"
+        }
+      },
+      "configs": {
+        "conditionGroups": [
+          {
+            "conditions": [
+              {
+                "left": "${isValid}",
+                "operator": "isTrue",
+                "right": true
+              }
+            ],
+            "relationship": "AND",
+            "handleId": "valid",
+            "nextNode": "CheckSupplierExists"
+          },
+          {
+            "conditions": [],
+            "relationship": "AND",
+            "handleId": "942f44a244d647478791bd57edbf5f8a",
+            "isDefaultBranch": true,
+            "nextNode": "ValidationFailed"
+          }
+        ],
+        "defaultNextNode": "ValidationFailed"
+      }
+    },
+    {
+      "id": "3ee34383c094cb3240ac90fe8c0ab725",
+      "name": "CheckSupplierExists",
+      "type": "customSQL",
+      "desc": "检查供应商是否已存在",
+      "inputs": {
+        "code": {
+          "type": "string",
+          "desc": "供应商编码",
+          "value": "$.CreateSupplierStart.inputs.supplierCode"
+        }
+      },
+      "outputs": {
+        "checkSupplierExistsExistingSupplier": {
+          "type": "array",
+          "desc": "已存在的供应商记录",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "Supplier",
+        "sql": "SELECT id, code, name FROM \"Supplier\" WHERE code = '${code}'"
+      },
+      "nextNodes": [
+        "CheckExistenceResult"
+      ]
+    },
+    {
+      "id": "977a0fdbb9ec200a3bac86f8eb34fe21",
+      "name": "CheckExistenceResult",
+      "type": "code",
+      "desc": "检查供应商存在结果",
+      "inputs": {
+        "existingSupplier": {
+          "type": "array",
+          "desc": "已存在的供应商记录",
+          "value": "$.CheckSupplierExists.outputs.checkSupplierExistsExistingSupplier"
+        }
+      },
+      "outputs": {
+        "checkExistenceResultSupplierExists": {
+          "type": "boolean",
+          "desc": "供应商是否存在",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "dependencies": [],
+        "file": {
+          "name": "checkExistenceResult.js"
+        }
+      },
+      "nextNodes": [
+        "CheckSupplierExistenceCondition"
+      ]
+    },
+    {
+      "id": "96382cd78ec3c7450be0f3b906288a3b",
+      "name": "CheckSupplierExistenceCondition",
+      "type": "condition",
+      "desc": "检查供应商存在条件",
+      "inputs": {
+        "supplierExists": {
+          "type": "boolean",
+          "desc": "供应商是否存在",
+          "value": "$.CheckExistenceResult.outputs.checkExistenceResultSupplierExists"
+        }
+      },
+      "configs": {
+        "conditionGroups": [
+          {
+            "conditions": [
+              {
+                "left": "${supplierExists}",
+                "operator": "isTrue",
+                "right": true
+              }
+            ],
+            "relationship": "AND",
+            "handleId": "exists",
+            "nextNode": "SupplierExistsError"
+          },
+          {
+            "conditions": [],
+            "relationship": "AND",
+            "handleId": "dd686573536448c5b3c03b2567cd7a1d",
+            "isDefaultBranch": true,
+            "nextNode": "CreateSupplierRecord"
+          }
+        ],
+        "defaultNextNode": "CreateSupplierRecord"
+      }
+    },
+    {
+      "id": "eef8a23e9a42ef428b21d1980db5781b",
+      "name": "SupplierExistsError",
+      "type": "end",
+      "desc": "供应商已存在错误响应",
+      "inputs": {
+        "createSupplierRecordCreatedSupplier": {
+          "type": "array",
+          "desc": "创建的供应商记录",
+          "value": ""
+        }
+      },
+      "outputs": {
+        "code": {
+          "type": "number",
+          "desc": "冲突状态码",
+          "value": "409",
+          "builtinAttrName": "code",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "data": {
+          "type": "object",
+          "desc": "错误数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "message": {
+          "type": "string",
+          "desc": "错误信息",
+          "value": "供应商编码已存在",
           "builtinAttrName": "message",
           "isDynamic": true,
           "isBuiltin": true,
