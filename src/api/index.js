@@ -16,6 +16,9 @@ import cddRouter from './cdd.js'
 import testRightConditionRouter from './test-right-condition.js'
 import testCreateOrderRouter from './test-create-order.js'
 import testTwoDialogRouter from './test-two-dialog.js'
+import testMultipleRouter from './test-multiple.js'
+import testCreateWarehouseRouter from './test-create-warehouse.js'
+import testCreateTagRouter from './test-create-tag.js'
 
 const router = new Router()
 
@@ -36,5 +39,8 @@ router.use(cddRouter.routes())
 router.use(testRightConditionRouter.routes())
 router.use(testCreateOrderRouter.routes())
 router.use(testTwoDialogRouter.routes())
+router.use(testMultipleRouter.routes())
+router.use(testCreateWarehouseRouter.routes())
+router.use(testCreateTagRouter.routes())
 
 export default router

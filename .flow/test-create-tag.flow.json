@@ -1,0 +1,151 @@
+{
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "id": "ad0d550b3f3d4813bd581266e92c79fe",
+      "name": "Start",
+      "type": "start",
+      "desc": "开始节点，接收用户ID和标签名称",
+      "inputs": {
+        "userId": {
+          "type": "number",
+          "desc": "用户ID",
+          "value": 123131231
+        },
+        "tagName": {
+          "type": "string",
+          "desc": "标签名称",
+          "value": "hello"
+        }
+      },
+      "nextNodes": [
+        "ValidateInput"
+      ]
+    },
+    {
+      "id": "402371d202eab8d10bbdb44946b4115a",
+      "name": "ValidateInput",
+      "type": "code",
+      "desc": "验证输入参数有效性",
+      "inputs": {
+        "StartUserId": {
+          "type": "number",
+          "desc": "用户ID",
+          "value": ""
+        },
+        "StartTagName": {
+          "type": "string",
+          "desc": "标签名称",
+          "value": ""
+        }
+      },
+      "outputs": {
+        "validatedUserId": {
+          "type": "number",
+          "desc": "验证后的用户ID",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "validatedTagName": {
+          "type": "string",
+          "desc": "验证后的标签名称",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "validateInput.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "CreateTagRecord"
+      ]
+    },
+    {
+      "id": "ac3753249aaab36f71aef372bbc52305",
+      "name": "CreateTagRecord",
+      "type": "customSQL",
+      "desc": "向tags表插入新标签记录",
+      "inputs": {
+        "ValidateInputValidatedUserId": {
+          "type": "number",
+          "desc": "验证后的用户ID",
+          "value": ""
+        },
+        "ValidateInputValidatedTagName": {
+          "type": "string",
+          "desc": "验证后的标签名称",
+          "value": ""
+        }
+      },
+      "outputs": {
+        "TagData": {
+          "type": "array",
+          "desc": "创建的标签数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "tags",
+        "sql": "INSERT INTO \"tags\" (\"user_id\", \"name\", \"created_at\") VALUES (${ValidateInputValidatedUserId}, '${ValidateInputValidatedTagName}', NOW()) RETURNING \"tag_id\""
+      },
+      "nextNodes": [
+        "End"
+      ]
+    },
+    {
+      "id": "8ceec47109116aa92c444f7c56d3311f",
+      "name": "End",
+      "type": "end",
+      "desc": "结束节点，返回创建结果",
+      "inputs": {
+        "TagData": {
+          "type": "array",
+          "desc": "创建的标签数据",
+          "value": "$.CreateTagRecord.outputs.TagData"
+        }
+      },
+      "outputs": {
+        "code": {
+          "type": "number",
+          "desc": "响应状态码",
+          "value": 200,
+          "builtinAttrName": "code",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "message": {
+          "type": "string",
+          "desc": "响应消息",
+          "value": "标签创建成功",
+          "builtinAttrName": "message",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "data": {
+          "type": "object",
+          "desc": "响应数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      }
+    }
+  ]
+}

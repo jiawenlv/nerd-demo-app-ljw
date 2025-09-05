@@ -1,0 +1,416 @@
+{
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "id": "5f6798ccd2f6a9ec75d738ce651d0e53",
+      "name": "StartLogin",
+      "type": "start",
+      "desc": "用户登录开始节点，接收登录凭证和密码",
+      "inputs": {
+        "credential": {
+          "type": "string",
+          "desc": "登录凭证（用户名或邮箱）",
+          "value": ""
+        },
+        "password": {
+          "type": "string",
+          "desc": "登录密码",
+          "value": ""
+        }
+      },
+      "nextNodes": [
+        "ValidateInput"
+      ]
+    },
+    {
+      "id": "a00a4b369124ccd1c46709a17e667efb",
+      "name": "UserNotFoundEnd",
+      "type": "end",
+      "desc": "用户不存在结束节点",
+      "inputs": {
+        "VerifyPasswordIsValid": {
+          "type": "boolean",
+          "desc": "密码验证结果",
+          "value": ""
+        }
+      },
+      "outputs": {
+        "UserNotFoundEndCode": {
+          "type": "number",
+          "desc": "状态码",
+          "value": 404,
+          "builtinAttrName": "code",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "UserNotFoundEndData": {
+          "type": "object",
+          "desc": "响应数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "UserNotFoundEndMessage": {
+          "type": "string",
+          "desc": "错误消息",
+          "value": "用户不存在",
+          "builtinAttrName": "message",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      }
+    },
+    {
+      "id": "c86dd049e54c9f5f1795372cf6f4dbe3",
+      "name": "PasswordErrorEnd",
+      "type": "end",
+      "desc": "密码错误结束节点",
+      "inputs": {
+        "GenerateLoginResponseUserInfo": {
+          "type": "object",
+          "desc": "用户信息",
+          "value": ""
+        },
+        "GenerateLoginResponseToken": {
+          "type": "string",
+          "desc": "登录令牌",
+          "value": ""
+        }
+      },
+      "outputs": {
+        "PasswordErrorEndCode": {
+          "type": "number",
+          "desc": "状态码",
+          "value": 401,
+          "builtinAttrName": "code",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "PasswordErrorEndData": {
+          "type": "object",
+          "desc": "响应数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "PasswordErrorEndMessage": {
+          "type": "string",
+          "desc": "错误消息",
+          "value": "密码错误",
+          "builtinAttrName": "message",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      }
+    },
+    {
+      "id": "fb300182f74c5a75238569cf92f0586a",
+      "name": "ValidateInput",
+      "type": "code",
+      "desc": "验证输入参数是否有效",
+      "inputs": {
+        "StartLoginCredential": {
+          "type": "string",
+          "desc": "登录凭证",
+          "value": "$.StartLogin.inputs.credential"
+        },
+        "StartLoginPassword": {
+          "type": "string",
+          "desc": "登录密码",
+          "value": "$.StartLogin.inputs.password"
+        }
+      },
+      "outputs": {
+        "ValidateInputCredential": {
+          "type": "string",
+          "desc": "验证后的登录凭证",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "ValidateInputPassword": {
+          "type": "string",
+          "desc": "验证后的登录密码",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "validateInput.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "QueryUserByCredential"
+      ]
+    },
+    {
+      "id": "de4609d39989970bd921e58dbac76e5a",
+      "name": "QueryUserByCredential",
+      "type": "customSQL",
+      "desc": "根据用户名或邮箱查询用户信息",
+      "inputs": {
+        "ValidateInputCredential": {
+          "type": "string",
+          "desc": "登录凭证",
+          "value": "$.ValidateInput.outputs.ValidateInputCredential"
+        }
+      },
+      "outputs": {
+        "UserData": {
+          "type": "array",
+          "desc": "查询到的用户数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "users",
+        "sql": "SELECT \"user_id\", \"username\", \"email\", \"password_hash\" FROM \"users\" WHERE \"username\" = '${ValidateInputCredential}' OR \"email\" = '${ValidateInputCredential}'"
+      },
+      "nextNodes": [
+        "CheckUserExists"
+      ]
+    },
+    {
+      "id": "ddd4c30c7bdea2bf0ef3c388595cd85d",
+      "name": "CheckUserExists",
+      "type": "condition",
+      "desc": "检查用户是否存在",
+      "inputs": {
+        "UserData": {
+          "type": "array",
+          "desc": "查询到的用户数据",
+          "value": "$.QueryUserByCredential.outputs.UserData"
+        }
+      },
+      "configs": {
+        "conditionGroups": [
+          {
+            "conditions": [
+              {
+                "left": "${UserData}",
+                "operator": "isNotNull",
+                "right": ""
+              }
+            ],
+            "relationship": "AND",
+            "handleId": "f82be646da254001bb45a9ba9552f353",
+            "nextNode": "VerifyPassword"
+          },
+          {
+            "conditions": [
+              {
+                "left": "${UserData}",
+                "operator": "isNull",
+                "right": ""
+              }
+            ],
+            "relationship": "AND",
+            "handleId": "e1f989537ab043598dd50ab31066640f",
+            "isDefaultBranch": true,
+            "nextNode": "UserNotFoundEnd"
+          }
+        ],
+        "defaultNextNode": "UserNotFoundEnd"
+      }
+    },
+    {
+      "id": "ec0fe9181bffefef2e7a28ed4cb6d9bd",
+      "name": "VerifyPassword",
+      "type": "code",
+      "desc": "验证用户密码是否正确",
+      "inputs": {
+        "UserData": {
+          "type": "array",
+          "desc": "用户数据",
+          "value": "$.QueryUserByCredential.outputs.UserData"
+        },
+        "ValidateInputPassword": {
+          "type": "string",
+          "desc": "输入的密码",
+          "value": "$.ValidateInput.outputs.ValidateInputPassword"
+        }
+      },
+      "outputs": {
+        "VerifyPasswordIsValid": {
+          "type": "boolean",
+          "desc": "密码验证结果",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "verifyPassword.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "CheckPasswordCorrect"
+      ]
+    },
+    {
+      "id": "87657a92636261c13e808bc5ad8ea53d",
+      "name": "CheckPasswordCorrect",
+      "type": "condition",
+      "desc": "检查密码是否正确",
+      "inputs": {
+        "VerifyPasswordIsValid": {
+          "type": "boolean",
+          "desc": "密码验证结果",
+          "value": "$.VerifyPassword.outputs.VerifyPasswordIsValid"
+        }
+      },
+      "configs": {
+        "conditionGroups": [
+          {
+            "conditions": [
+              {
+                "left": "${VerifyPasswordIsValid}",
+                "operator": "isTrue",
+                "right": ""
+              }
+            ],
+            "relationship": "AND",
+            "handleId": "c2b542a995c64f72860794bc742abb9f",
+            "nextNode": "GenerateLoginResponse"
+          },
+          {
+            "conditions": [
+              {
+                "left": "${VerifyPasswordIsValid}",
+                "operator": "isFalse",
+                "right": ""
+              }
+            ],
+            "relationship": "AND",
+            "handleId": "8c5b0b89133840cba4b3f35d9fc25ab4",
+            "isDefaultBranch": true,
+            "nextNode": "PasswordErrorEnd"
+          }
+        ],
+        "defaultNextNode": "PasswordErrorEnd"
+      }
+    },
+    {
+      "id": "267aa4b377a5330b1344a1eae5bfd661",
+      "name": "GenerateLoginResponse",
+      "type": "code",
+      "desc": "生成登录成功响应",
+      "inputs": {
+        "UserData": {
+          "type": "array",
+          "desc": "用户数据",
+          "value": "$.QueryUserByCredential.outputs.UserData"
+        }
+      },
+      "outputs": {
+        "GenerateLoginResponseUserInfo": {
+          "type": "object",
+          "desc": "用户信息",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "GenerateLoginResponseToken": {
+          "type": "string",
+          "desc": "登录令牌",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "generateResponse.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "LoginSuccessEnd"
+      ]
+    },
+    {
+      "id": "ab15a7fd25bbef62c74ae91a11c74081",
+      "name": "LoginSuccessEnd",
+      "type": "end",
+      "desc": "登录成功结束节点",
+      "inputs": {
+        "PasswordErrorEndCode": {
+          "type": "number",
+          "desc": "状态码",
+          "value": ""
+        },
+        "PasswordErrorEndData": {
+          "type": "object",
+          "desc": "响应数据",
+          "value": ""
+        },
+        "PasswordErrorEndMessage": {
+          "type": "string",
+          "desc": "错误消息",
+          "value": ""
+        }
+      },
+      "outputs": {
+        "LoginSuccessEndCode": {
+          "type": "number",
+          "desc": "状态码",
+          "value": 200,
+          "builtinAttrName": "code",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "LoginSuccessEndData": {
+          "type": "object",
+          "desc": "响应数据",
+          "value": {
+            "userInfo": "$.GenerateLoginResponse.outputs.GenerateLoginResponseUserInfo",
+            "token": "$.GenerateLoginResponse.outputs.GenerateLoginResponseToken"
+          },
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "LoginSuccessEndMessage": {
+          "type": "string",
+          "desc": "成功消息",
+          "value": "登录成功",
+          "builtinAttrName": "message",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      }
+    }
+  ]
+}
