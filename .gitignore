@@ -5,4 +5,5 @@ CLAUDE.md
 dist
 # Workflow temporary directories
 .workflow-temp-*
+.idea
 

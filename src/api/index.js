@@ -19,6 +19,9 @@ import testTwoDialogRouter from './test-two-dialog.js'
 import testMultipleRouter from './test-multiple.js'
 import testCreateWarehouseRouter from './test-create-warehouse.js'
 import testCreateTagRouter from './test-create-tag.js'
+import createTagRouter from './create-tag.js'
+import updateTagRouter from './update-tag.js'
+import createTwoRouter from './create-two.js'
 
 const router = new Router()
 
@@ -42,5 +45,8 @@ router.use(testTwoDialogRouter.routes())
 router.use(testMultipleRouter.routes())
 router.use(testCreateWarehouseRouter.routes())
 router.use(testCreateTagRouter.routes())
+router.use(createTagRouter.routes())
+router.use(updateTagRouter.routes())
+router.use(createTwoRouter.routes())
 
 export default router

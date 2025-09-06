@@ -1,0 +1,374 @@
+{
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "id": "29c3bb380b6d7d483000889a7f122b8f",
+      "name": "Start",
+      "type": "start",
+      "desc": "工作流开始节点，接收用户创建请求参数",
+      "inputs": {
+        "StartName": {
+          "type": "string",
+          "desc": "用户姓名",
+          "value": ""
+        },
+        "StartPassword": {
+          "type": "string",
+          "desc": "用户密码",
+          "value": ""
+        }
+      },
+      "nextNodes": [
+        "ValidateInput"
+      ]
+    },
+    {
+      "id": "6c5c921a10f5c8446f16348f42cce05d",
+      "name": "ValidateInput",
+      "type": "code",
+      "desc": "验证输入参数的有效性",
+      "inputs": {
+        "ValidateInputName": {
+          "type": "string",
+          "desc": "用户姓名",
+          "value": "$.Start.inputs.StartName"
+        },
+        "ValidateInputPassword": {
+          "type": "string",
+          "desc": "用户密码",
+          "value": "$.Start.inputs.StartPassword"
+        }
+      },
+      "outputs": {
+        "ValidateInputValid": {
+          "type": "boolean",
+          "desc": "输入验证是否通过",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "ValidateInputError": {
+          "type": "string",
+          "desc": "验证错误信息",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "ValidateInputValidatedName": {
+          "type": "string",
+          "desc": "验证后的用户名",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        },
+        "ValidateInputValidatedPassword": {
+          "type": "string",
+          "desc": "验证后的密码",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "validateInput.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "CheckUserExists",
+        "ValidationError"
+      ]
+    },
+    {
+      "id": "2b3d585ea9497e3a984e731b2a279fc8",
+      "name": "CheckUserExists",
+      "type": "customSQL",
+      "desc": "检查用户名是否已存在",
+      "inputs": {
+        "CheckUserExistsName": {
+          "type": "string",
+          "desc": "要检查的用户名",
+          "value": "$.ValidateInput.outputs.ValidateInputValidatedName"
+        }
+      },
+      "outputs": {
+        "CheckUserExistsData": {
+          "type": "array",
+          "desc": "查询结果数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "user",
+        "sql": "SELECT \"id\" FROM \"user\" WHERE \"name\" = '${CheckUserExistsName}' LIMIT 1"
+      },
+      "nextNodes": [
+        "UserExistsCondition"
+      ]
+    },
+    {
+      "id": "4436640b7d52b57286382ccc08e66bef",
+      "name": "ValidationError",
+      "type": "end",
+      "desc": "输入验证错误响应",
+      "inputs": {
+        "ValidationErrorError": {
+          "type": "string",
+          "desc": "验证错误信息",
+          "value": "$.ValidateInput.outputs.ValidateInputError"
+        }
+      },
+      "outputs": {
+        "ValidationErrorCode": {
+          "type": "number",
+          "desc": "错误状态码",
+          "value": 400,
+          "builtinAttrName": "code",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "ValidationErrorData": {
+          "type": "object",
+          "desc": "错误响应数据",
+          "value": {
+            "error": "$.ValidateInput.outputs.ValidateInputError"
+          },
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "ValidationErrorMessage": {
+          "type": "string",
+          "desc": "错误消息",
+          "value": "输入参数验证失败",
+          "builtinAttrName": "message",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      }
+    },
+    {
+      "id": "ef851d8020ba8d92da8b067a5994b4dc",
+      "name": "UserExistsCondition",
+      "type": "condition",
+      "desc": "判断用户是否存在",
+      "inputs": {
+        "UserExistsConditionData": {
+          "type": "array",
+          "desc": "用户查询结果数据",
+          "value": "$.CheckUserExists.outputs.CheckUserExistsData"
+        }
+      },
+      "configs": {
+        "conditionGroups": [
+          {
+            "conditions": [
+              {
+                "left": "${UserExistsConditionData}",
+                "operator": "isNotNull",
+                "right": ""
+              }
+            ],
+            "relationship": "AND",
+            "handleId": "a45bb84037444038a4dd30c3244ba7c2",
+            "nextNode": "UserExistsError"
+          },
+          {
+            "conditions": [
+              {
+                "left": "${UserExistsConditionData}",
+                "operator": "isNull",
+                "right": ""
+              }
+            ],
+            "relationship": "AND",
+            "handleId": "02ced5d73bc3446abcbf84856f344d5c",
+            "nextNode": "GenerateUserId"
+          },
+          {
+            "conditions": [],
+            "relationship": "AND",
+            "handleId": "f846f2544f914145b00a6567895e27c5",
+            "isDefaultBranch": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "cf35040dffc5911fb2c025253ab9c468",
+      "name": "GenerateUserId",
+      "type": "code",
+      "desc": "生成唯一的用户ID",
+      "outputs": {
+        "GenerateUserId": {
+          "type": "string",
+          "desc": "生成的用户ID",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "generateUserId.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "CreateUserRecord"
+      ]
+    },
+    {
+      "id": "b2d6af0b6573264666e4bda29d17a76c",
+      "name": "UserExistsError",
+      "type": "end",
+      "desc": "用户已存在错误响应",
+      "inputs": {
+        "UserExistsErrorName": {
+          "type": "string",
+          "desc": "已存在的用户名",
+          "value": "$.ValidateInput.outputs.ValidateInputValidatedName"
+        }
+      },
+      "outputs": {
+        "UserExistsErrorCode": {
+          "type": "number",
+          "desc": "错误状态码",
+          "value": 409,
+          "builtinAttrName": "code",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "UserExistsErrorData": {
+          "type": "object",
+          "desc": "错误响应数据",
+          "value": {
+            "error": "用户已存在"
+          },
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "UserExistsErrorMessage": {
+          "type": "string",
+          "desc": "错误消息",
+          "value": "用户名已存在",
+          "builtinAttrName": "message",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      }
+    },
+    {
+      "id": "048baf0b8a04b7be5bf9694856387a08",
+      "name": "CreateUserRecord",
+      "type": "customSQL",
+      "desc": "创建用户记录",
+      "inputs": {
+        "CreateUserRecordId": {
+          "type": "string",
+          "desc": "用户ID",
+          "value": "$.GenerateUserId.outputs.GenerateUserId"
+        },
+        "CreateUserRecordName": {
+          "type": "string",
+          "desc": "用户名",
+          "value": "$.ValidateInput.outputs.ValidateInputValidatedName"
+        },
+        "CreateUserRecordPassword": {
+          "type": "string",
+          "desc": "用户密码",
+          "value": "$.ValidateInput.outputs.ValidateInputValidatedPassword"
+        }
+      },
+      "outputs": {
+        "CreateUserRecordData": {
+          "type": "array",
+          "desc": "插入结果数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "user",
+        "sql": "INSERT INTO \"user\" (\"id\", \"name\", \"password\", \"created_at\") VALUES ('${CreateUserRecordId}', '${CreateUserRecordName}', '${CreateUserRecordPassword}', NOW()) RETURNING \"id\""
+      },
+      "nextNodes": [
+        "UserCreationSuccess"
+      ]
+    },
+    {
+      "id": "b4d4b844b95b69d12c0ce36a839248e9",
+      "name": "UserCreationSuccess",
+      "type": "end",
+      "desc": "用户创建成功响应",
+      "inputs": {
+        "UserCreationSuccessUserId": {
+          "type": "string",
+          "desc": "创建的用户ID",
+          "value": "$.CreateUserRecord.outputs.CreateUserRecordData[0].id"
+        }
+      },
+      "outputs": {
+        "UserCreationSuccessCode": {
+          "type": "number",
+          "desc": "成功状态码",
+          "value": 200,
+          "builtinAttrName": "code",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "UserCreationSuccessData": {
+          "type": "object",
+          "desc": "成功响应数据",
+          "value": {
+            "userId": "$.CreateUserRecord.outputs.CreateUserRecordData[0].id",
+            "message": "用户创建成功"
+          },
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "UserCreationSuccessMessage": {
+          "type": "string",
+          "desc": "成功消息",
+          "value": "用户创建成功",
+          "builtinAttrName": "message",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      }
+    }
+  ]
+}

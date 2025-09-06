@@ -1,0 +1,121 @@
+{
+  "nodes": {
+    "29c3bb380b6d7d483000889a7f122b8f": {
+      "x": 150,
+      "y": 150,
+      "width": 624,
+      "height": 361,
+      "inputs": {
+        "StartName": "c196ec7812f343f5a1c16984ba20b872",
+        "StartPassword": "f8b8fff5b24a4c3b9236264a6214b421"
+      }
+    },
+    "6c5c921a10f5c8446f16348f42cce05d": {
+      "x": 1050,
+      "y": 150,
+      "width": 688,
+      "height": 1011,
+      "inputs": {
+        "ValidateInputName": "6dec09081be549b4a28d45aff320a792",
+        "ValidateInputPassword": "84f0050fe3104d81a95caed22b34fa20"
+      },
+      "outputs": {
+        "ValidateInputValid": "376340ea086b49a88b63f46c424de5c5",
+        "ValidateInputError": "fb21eb23b95e49d4b707c2ee430c47ab",
+        "ValidateInputValidatedName": "2857723586e144c0b1722a3e7d364a84",
+        "ValidateInputValidatedPassword": "55bf49ffe3f7403494b0141bb74e55db"
+      }
+    },
+    "2b3d585ea9497e3a984e731b2a279fc8": {
+      "x": 1950,
+      "y": -450,
+      "width": 688,
+      "height": 691,
+      "inputs": {
+        "CheckUserExistsName": "8a272a170ccd41a2b87590780b889428"
+      },
+      "outputs": {
+        "CheckUserExistsData": "126632fb06cb449eb1eec75df65b2dac"
+      }
+    },
+    "4436640b7d52b57286382ccc08e66bef": {
+      "x": 1950,
+      "y": 750,
+      "width": 784,
+      "height": 515,
+      "inputs": {
+        "ValidationErrorError": "cbc802db861043b49a85f0293f014ee3"
+      },
+      "outputs": {
+        "ValidationErrorCode": "cb2aa3e2e5904d05b5fd8c75e4bbccbe",
+        "ValidationErrorData": "e0615003b9ae400b9a00ba765e0242bd",
+        "ValidationErrorMessage": "bc35e1c90125421a8c34dcc156e193a1"
+      }
+    },
+    "ef851d8020ba8d92da8b067a5994b4dc": {
+      "x": 2850,
+      "y": -450,
+      "width": 624,
+      "height": 739,
+      "inputs": {
+        "UserExistsConditionData": "3b90cdb8a0ba45969ad05c515a3e5c7e"
+      },
+      "handleIds": {
+        "condition_0": "a45bb84037444038a4dd30c3244ba7c2",
+        "condition_1": "02ced5d73bc3446abcbf84856f344d5c",
+        "default": "f846f2544f914145b00a6567895e27c5"
+      }
+    },
+    "cf35040dffc5911fb2c025253ab9c468": {
+      "x": 3750,
+      "y": 100,
+      "width": 688,
+      "height": 960,
+      "outputs": {
+        "GenerateUserId": "8a569be590cf42d89af92a5164b3e436"
+      }
+    },
+    "b2d6af0b6573264666e4bda29d17a76c": {
+      "x": 3750,
+      "y": -1000,
+      "width": 784,
+      "height": 515,
+      "inputs": {
+        "UserExistsErrorName": "03522727a5874bc5ad679ab734271f53"
+      },
+      "outputs": {
+        "UserExistsErrorCode": "18df93dba13641eabae136336660a5d2",
+        "UserExistsErrorData": "d7bb91da99e94525b281be9ee887b898",
+        "UserExistsErrorMessage": "8e486a2d983d4bb1b772e5c33d42601e"
+      }
+    },
+    "048baf0b8a04b7be5bf9694856387a08": {
+      "x": 4650,
+      "y": 100,
+      "width": 688,
+      "height": 773,
+      "inputs": {
+        "CreateUserRecordId": "502baf0bb311478ab57cd810572d617d",
+        "CreateUserRecordName": "8e2ba7eca359420eb164a5840471052a",
+        "CreateUserRecordPassword": "a3f34b1cb16849cfa5d02866b09929fd"
+      },
+      "outputs": {
+        "CreateUserRecordData": "945b4b141aa34a38a6444f8bd9ebc3f4"
+      }
+    },
+    "b4d4b844b95b69d12c0ce36a839248e9": {
+      "x": 5550,
+      "y": 100,
+      "width": 784,
+      "height": 515,
+      "inputs": {
+        "UserCreationSuccessUserId": "add47bde5a574a66b6a6d1c0e7fc92f8"
+      },
+      "outputs": {
+        "UserCreationSuccessCode": "94bc45bf531d44b5a97f18806b3f4d99",
+        "UserCreationSuccessData": "4d3bd2e2d4184abaa1e8827579429be4",
+        "UserCreationSuccessMessage": "44a482400a6340599dbd4e0da065c42e"
+      }
+    }
+  }
+}

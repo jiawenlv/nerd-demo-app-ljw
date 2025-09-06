@@ -1,0 +1,107 @@
+{
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "id": "01fbe142d08c4bc18893f588d3b6ff0b",
+      "name": "Start",
+      "type": "start",
+      "desc": "开始节点，接收两个数字输入",
+      "inputs": {
+        "FirstNumber": {
+          "type": "number",
+          "desc": "第一个加数",
+          "value": ""
+        },
+        "SecondNumber": {
+          "type": "number",
+          "desc": "第二个加数",
+          "value": ""
+        }
+      },
+      "nextNodes": [
+        "CalculateSum"
+      ]
+    },
+    {
+      "id": "3d367e901f42c39257c45b367421aaae",
+      "name": "CalculateSum",
+      "type": "code",
+      "desc": "计算两个数字的和",
+      "inputs": {
+        "CalculateSumFirstNumber": {
+          "type": "number",
+          "desc": "第一个加数",
+          "value": "$.Start.inputs.FirstNumber"
+        },
+        "CalculateSumSecondNumber": {
+          "type": "number",
+          "desc": "第二个加数",
+          "value": "$.Start.inputs.SecondNumber"
+        }
+      },
+      "outputs": {
+        "CalculateSumResult": {
+          "type": "number",
+          "desc": "两个数字的和",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "sumCalculator.js"
+        },
+        "dependencies": []
+      },
+      "nextNodes": [
+        "End"
+      ]
+    },
+    {
+      "id": "3e5b9cc67a492be97a3395387fccd934",
+      "name": "End",
+      "type": "end",
+      "desc": "结束节点，返回计算结果",
+      "inputs": {
+        "CalculateSumResult": {
+          "type": "number",
+          "desc": "两个数字的和",
+          "value": "$.CalculateSum.outputs.CalculateSumResult"
+        }
+      },
+      "outputs": {
+        "EndCode": {
+          "type": "number",
+          "desc": "状态码",
+          "value": 200,
+          "builtinAttrName": "code",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "EndData": {
+          "type": "object",
+          "desc": "返回数据",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        },
+        "EndMessage": {
+          "type": "string",
+          "desc": "返回消息",
+          "value": "计算成功",
+          "builtinAttrName": "message",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      }
+    }
+  ]
+}
