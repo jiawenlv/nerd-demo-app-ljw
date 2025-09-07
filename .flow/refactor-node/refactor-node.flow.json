@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "id": "8519ebca961e4b28bc55d469e0816e68",
+      "name": "Start",
+      "type": "start",
+      "desc": "该节点暂无描述",
+      "nextNodes": [
+        "CustomSQL"
+      ]
+    },
+    {
+      "id": "f5b9c2ec1a57481981f45e8655ec7fe3",
+      "name": "CustomSQL",
+      "type": "customSQL",
+      "desc": "",
+      "outputs": {
+        "data": {
+          "type": "array",
+          "desc": "查询结果数据或受影响的记录",
+          "builtinAttrName": "data",
+          "isDynamic": true,
+          "isBuiltin": true,
+          "editable": true,
+          "removable": false
+        }
+      },
+      "configs": {
+        "table": "",
+        "sql": "SELECT name FROM user "
+      },
+      "nextNodes": [
+        "End"
+      ]
+    },
+    {
+      "id": "2d711eace84f486fb593ec30a9d736c6",
+      "name": "End",
+      "type": "end",
+      "desc": "",
+      "inputs": {
+        "input_1": {
+          "type": "string",
+          "desc": "New input field",
+          "value": "$.CustomSQL.outputs.data"
+        }
+      },
+      "outputs": {
+        "output1": {
+          "type": "string",
+          "desc": "自定义输出1",
+          "value": "${input_1}",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      }
+    }
+  ]
+}

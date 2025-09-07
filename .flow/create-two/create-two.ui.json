@@ -3,18 +3,14 @@
     "01fbe142d08c4bc18893f588d3b6ff0b": {
       "x": 150,
       "y": 150,
-      "width": 624,
-      "height": 361,
-      "inputs": {
-        "FirstNumber": "be16d374f1634879b68a06258fcd4d47",
-        "SecondNumber": "ad6a2dbabdb341a5a5ccccd73efa5b50"
-      }
+      "width": 236,
+      "height": 417
     },
     "3d367e901f42c39257c45b367421aaae": {
       "x": 1050,
       "y": 150,
-      "width": 672,
-      "height": 888,
+      "width": 688,
+      "height": 848,
       "inputs": {
         "CalculateSumFirstNumber": "25a59fdf2d004cfba801a24d7c822bfd",
         "CalculateSumSecondNumber": "ad800d3f12ed4605acd61d10c999617d"
@@ -26,8 +22,8 @@
     "3e5b9cc67a492be97a3395387fccd934": {
       "x": 1950,
       "y": 150,
-      "width": 672,
-      "height": 523,
+      "width": 688,
+      "height": 515,
       "inputs": {
         "CalculateSumResult": "74783de79e5848d9b49643388b184cea"
       },

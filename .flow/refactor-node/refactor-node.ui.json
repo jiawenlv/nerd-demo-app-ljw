@@ -1,0 +1,31 @@
+{
+  "nodes": {
+    "8519ebca961e4b28bc55d469e0816e68": {
+      "x": -255,
+      "y": 195,
+      "width": 800,
+      "height": 389
+    },
+    "f5b9c2ec1a57481981f45e8655ec7fe3": {
+      "x": 720,
+      "y": 135,
+      "width": 560,
+      "height": 845,
+      "outputs": {
+        "data": "dcf5a8bc5e1545998c740bc4570c1584"
+      }
+    },
+    "2d711eace84f486fb593ec30a9d736c6": {
+      "x": 1455,
+      "y": 300,
+      "width": 500,
+      "height": 529,
+      "inputs": {
+        "input_1": "2d711eace84f486fb593ec30a9d736c6.input_1"
+      },
+      "outputs": {
+        "output1": "240e865fbf3c4a9fa35e72e52eae01fa"
+      }
+    }
+  }
+}

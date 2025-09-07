@@ -22,6 +22,7 @@ import testCreateTagRouter from './test-create-tag.js'
 import createTagRouter from './create-tag.js'
 import updateTagRouter from './update-tag.js'
 import createTwoRouter from './create-two.js'
+import refactorNodeRouter from './refactor-node.js'
 
 const router = new Router()
 
@@ -48,5 +49,6 @@ router.use(testCreateTagRouter.routes())
 router.use(createTagRouter.routes())
 router.use(updateTagRouter.routes())
 router.use(createTwoRouter.routes())
+router.use(refactorNodeRouter.routes())
 
 export default router
