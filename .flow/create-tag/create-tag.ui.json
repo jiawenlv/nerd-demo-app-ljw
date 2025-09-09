@@ -1,0 +1,101 @@
+{
+  "nodes": {
+    "3c4ec5fdfb375825b5903586a56210ae": {
+      "x": 150,
+      "y": 150,
+      "width": 600,
+      "height": 470,
+      "inputs": {
+        "TagName": "f33a2742fc274eefa8292b5b9bc37377",
+        "TagType": "8deff3bec30a48bdb54b542ad931f023",
+        "CreatedBy": "7ecc8a5a119d4170a7e810ddfb032306"
+      }
+    },
+    "a669053744a2a927db636625c389a06f": {
+      "x": 1050,
+      "y": 150,
+      "width": 600,
+      "height": 1077,
+      "inputs": {
+        "TagName": "18b5bad1a13d48369eb2b9e7e1caec26",
+        "TagType": "50a89093e1aa4dd590f59d25b0e27e00",
+        "CreatedBy": "b5ad9090e1234bb282380b356905b920"
+      },
+      "outputs": {
+        "ValidatedTagName": "4d2acb7fe840457f8de3b207a1a2d261",
+        "ValidatedTagType": "c3c48395344e4718a13583e3563d6ed4",
+        "ValidatedCreatedBy": "54ad41d860cc4978ad2cbddc5e41df74"
+      }
+    },
+    "6efffdb6a0fc9858d2d522ea3a5224a2": {
+      "x": 1950,
+      "y": 150,
+      "width": 600,
+      "height": 615,
+      "inputs": {
+        "ValidatedTagName": "4c7ce6c2e0aa4a2598fbaca63c276931",
+        "ValidatedTagType": "dbc5714fcd0e4f7d94a5e2759c24ea03"
+      },
+      "outputs": {
+        "TagExistsData": "bc1306386bbe4ff593b05695cc410d14"
+      }
+    },
+    "660342150e76ac43ae938cff888809ca": {
+      "x": 2850,
+      "y": 150,
+      "width": 600,
+      "height": 576,
+      "inputs": {
+        "TagExistsData": "74930597c0e542af822af144697eb012"
+      },
+      "handleIds": {
+        "condition_0": "26411627eb064df79bc9d78731122a3e",
+        "default": "d635e3e1ca3c41c09cefaff6a8db52e5"
+      }
+    },
+    "ecad1f8c7913f7e169ef5f42396a5edd": {
+      "x": 3750,
+      "y": 700,
+      "width": 600,
+      "height": 656,
+      "inputs": {
+        "ValidatedTagName": "aef1ed2093e643f3861a7b51afe25ded",
+        "ValidatedTagType": "e4130d980d3045b29a5c070af990ff04",
+        "ValidatedCreatedBy": "6ca074999d4b4c0f99621cab505833ee"
+      },
+      "outputs": {
+        "CreatedTagData": "7d03b941bfe0492dafb7cb821682677b"
+      }
+    },
+    "18edb306fb887084cedc6e3442971be8": {
+      "x": 3750,
+      "y": -400,
+      "width": 600,
+      "height": 405,
+      "inputs": {
+        "CreatedTagData": "0b066bf787aa43b5b32988bb42e8ab09"
+      },
+      "outputs": {
+        "Code": "61525a4623cd4586b83dd057c3a815a8",
+        "Message": "d28bc51a63c4478592eb613ac59c37bc",
+        "Data": "610f252954014ab29dd06cbae541739a"
+      }
+    },
+    "f948156f2491d932e7b8fb73c77b04b6": {
+      "x": 4650,
+      "y": 700,
+      "width": 600,
+      "height": 495,
+      "inputs": {
+        "Code": "da3f0db1b83048a6ad10fea9958a40c5",
+        "Message": "8eeea53145104d23be99b98f0d112366",
+        "Data": "d032666d8adb4d8a818c9aecbea9ab63"
+      },
+      "outputs": {
+        "Code": "909cf86b8b934810a38947c200e663b8",
+        "Message": "f24d7a32a91e4429a9e214c46f248ef5",
+        "Data": "2982fc37999c41cfa70a0fcf1dfa41a3"
+      }
+    }
+  }
+}

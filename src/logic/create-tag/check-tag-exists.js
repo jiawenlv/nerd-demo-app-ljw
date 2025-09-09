@@ -2,15 +2,15 @@
 import { prisma } from "../../db/client.js";
 import { AppError } from "../../common/appError.js";
 
-export default async function createTagRecord(ValidatedTagName, ValidatedTagType, ValidatedCreatedBy) {
+export default async function checkTagExists(ValidatedTagName, ValidatedTagType) {
   try {
-    // 执行INSERT查询
+    // 执行SELECT查询
     const params = [ValidatedTagName, ValidatedTagType];
-    const data = await prisma.$queryRawUnsafe(`INSERT INTO "employee" ("name", "type", "created_at", "updated_at") VALUES ($1, $2, NOW(), NOW()) RETURNING "id"`, ...params);
+    const data = await prisma.$queryRawUnsafe(`SELECT "id", "name", "type" FROM "employee" WHERE "name" = $1 AND "type" = $2 LIMIT 1`, ...params);
 
     // 返回结果
     return {
-      CreatedTagData: data,
+      TagExistsData: data,
     };
   } catch (error) {
     throw new AppError(`数据库操作失败: ${error.message}`, 500);

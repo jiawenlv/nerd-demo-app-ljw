@@ -1,13 +1,13 @@
 import validateInput from './validateInput.js';
-import createTagRecord from './create-tag-record.js';
-import end from './end.js';
+import checkTagExists from './check-tag-exists.js';
+import tagExistsCondition from './tag-exists-condition.js';
 
-export default async function createTagHandler(UserId, TagName) {
-  // 执行工作流链
-  const { ValidateInputValidatedUserId, ValidateInputValidatedTagName } = await validateInput(UserId, TagName);
-  const { CreateTagRecordTagId } = await createTagRecord(ValidateInputValidatedUserId, ValidateInputValidatedTagName);
-  const { EndCode, EndMessage, EndData } = await end(CreateTagRecordTagId);
+export default async function createTagHandler(TagName, TagType, CreatedBy) {
+  // 执行前置节点链
+  const { ValidatedTagName, ValidatedTagType, ValidatedCreatedBy } = await validateInput(TagName, TagType, CreatedBy);
+  const { TagExistsData } = await checkTagExists(ValidatedTagName, ValidatedTagType);
 
-  return { EndCode, EndMessage, EndData };
+  // 执行条件节点
+  return await tagExistsCondition(TagExistsData);
 
 }
