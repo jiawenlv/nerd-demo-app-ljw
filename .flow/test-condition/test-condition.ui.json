@@ -1,0 +1,52 @@
+{
+  "nodes": {
+    "5c4bbd95558643d2b17d749c8e8ce738": {
+      "x": 270,
+      "y": 300,
+      "width": 150,
+      "height": 40,
+      "inputs": {
+        "input_1": "5c4bbd95558643d2b17d749c8e8ce738.input_1"
+      }
+    },
+    "84662dcb8dfd4afab1b89bdfa81efb08": {
+      "x": 1560,
+      "y": 825,
+      "width": 350,
+      "height": 454,
+      "inputs": {
+        "input_1": "84662dcb8dfd4afab1b89bdfa81efb08.input_1"
+      },
+      "outputs": {
+        "output1": "fd7ed8adafbe4a029f60e174e468f61a",
+        "output2": "f1ca976c150745fba2de400d526d39b1"
+      }
+    },
+    "ca00b4e54bd441e3a5ff4b4342092e09": {
+      "x": 885,
+      "y": 165,
+      "width": 530,
+      "height": 558,
+      "inputs": {
+        "input_1": "ca00b4e54bd441e3a5ff4b4342092e09.input_1"
+      },
+      "handleIds": {
+        "condition_0": "3d571b13237842258c798e5c3c3f3129",
+        "default": "35636451ab384a769f417453bd52379f"
+      }
+    },
+    "d8ce4b70e2b040d6b7187310ae6538b6": {
+      "x": 1560,
+      "y": 105,
+      "width": 350,
+      "height": 454,
+      "inputs": {
+        "input_1": "d8ce4b70e2b040d6b7187310ae6538b6.input_1"
+      },
+      "outputs": {
+        "output1": "02cd9cd9e98c46f9a16cc3e930c7f25e",
+        "output2": "260abd619d2e46488353c919d5a34f80"
+      }
+    }
+  }
+}

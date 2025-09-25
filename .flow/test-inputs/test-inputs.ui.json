@@ -1,0 +1,18 @@
+{
+  "nodes": {
+    "3f90ddbb04ec4908be7d253f8d49806d": {
+      "x": 240,
+      "y": 495,
+      "width": 680,
+      "height": 1085,
+      "inputs": {
+        "pathParams": "395003373b0944ff8b370630718a8dc1",
+        "bodya": "98cfe93bc7794034bd1a56c41445fd44",
+        "queryasdf": "eb72bc29041848cd88bb9d110c628e07"
+      },
+      "outputs": {
+        "output1": "5a28ebe813cf476b8b7bd626940e1306"
+      }
+    }
+  }
+}

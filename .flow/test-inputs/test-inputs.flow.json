@@ -1,0 +1,83 @@
+{
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "id": "3f90ddbb04ec4908be7d253f8d49806d",
+      "name": "Javascript1",
+      "type": "logic",
+      "desc": "",
+      "inputs": {
+        "pathParams": {
+          "type": "object",
+          "desc": "New input field",
+          "value": {
+            "name": "",
+            "isVip": false,
+            "age": 11
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "isVip": {
+                "type": "boolean"
+              },
+              "age": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "bodya": {
+          "type": "object",
+          "desc": "",
+          "value": {
+            "aaa": ""
+          },
+          "schema": {
+            "properties": {
+              "aaa": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "queryasdf": {
+          "type": "object",
+          "desc": "",
+          "value": {
+            "ageassas": "",
+            "nameasa": ""
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ageassas": {
+                "type": "string"
+              },
+              "nameasa": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "outputs": {
+        "output1": {
+          "type": "string",
+          "desc": "自定义输出1",
+          "isBuiltin": false
+        }
+      },
+      "configs": {
+        "file": {
+          "name": "javascript1.js"
+        },
+        "dependencies": []
+      },
+      "next": []
+    }
+  ]
+}

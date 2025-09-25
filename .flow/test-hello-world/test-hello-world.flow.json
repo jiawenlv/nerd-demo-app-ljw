@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "id": "c02de157840a4efa9e190c8ca4ff78db",
+      "name": "End",
+      "type": "end",
+      "desc": "",
+      "inputs": {
+        "input_1": {
+          "type": "string",
+          "desc": "New input field",
+          "value": "$.Start.inputs.input_1"
+        }
+      },
+      "outputs": {
+        "output1": {
+          "type": "string",
+          "desc": "自定义输出1",
+          "value": "${input_1}",
+          "isDynamic": false,
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      }
+    }
+  ]
+}

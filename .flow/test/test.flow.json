@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "id": "0979603977bd48fdbf40d9f26997728c",
+      "name": "Javascript1",
+      "type": "logic",
+      "desc": "",
+      "inputs": {
+        "input_1": {
+          "type": "object",
+          "desc": "New input field",
+          "value": {
+            "field1": {
+              "field1": "",
+              "field2": "",
+              "field3": ""
+            },
+            "field2": "",
+            "field3": ""
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "field1": {
+                "type": "object",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "field1": {
+                      "type": "string"
+                    },
+                    "field2": {
+                      "type": "string"
+                    },
+                    "field3": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "field2": {
+                "type": "string"
+              },
+              "field3": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "outputs": {},
+      "configs": {
+        "file": {
+          "name": "javascript1.js"
+        },
+        "dependencies": []
+      },
+      "next": []
+    }
+  ]
+}

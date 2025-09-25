@@ -3,8 +3,9 @@
 export default async function end(input_1) {
   // End节点：构造最终返回结果
   return {
-    output1: "大于100",
-    output2: input_1
+    output1: input_1,
+    output2: "1",
+    output3: "2"
   };
 
 }
