@@ -1,5 +1,5 @@
 module.exports = {
-    "table": "purchase_order",
+    "table": "teacher",
     "columns": [
       {
         "name": "id",
@@ -7,56 +7,50 @@ module.exports = {
         "primaryKey": true,
         "notNull": true,
         "default": "autoincrement()",
-        "description": "采购订单唯一标识"
+        "description": "教师唯一标识"
       },
       {
-        "name": "order_number",
-        "type": "varchar(50)",
+        "name": "name",
+        "type": "varchar(100)",
         "notNull": true,
-        "description": "订单号"
+        "description": "教师姓名"
       },
       {
-        "name": "supplier_id",
-        "type": "integer",
-        "notNull": false,
-        "description": "供应商ID"
-      },
-      {
-        "name": "employee_id",
+        "name": "employeeid",
         "type": "integer",
         "notNull": false,
         "description": "员工ID"
       },
       {
-        "name": "total_amount",
-        "type": "decimal(12,2)",
+        "name": "title",
+        "type": "varchar(50)",
         "notNull": false,
-        "description": "总金额"
+        "description": "职称"
+      },
+      {
+        "name": "subject",
+        "type": "varchar(100)",
+        "notNull": false,
+        "description": "任教科目"
       },
       {
         "name": "status",
         "type": "varchar(20)",
-        "notNull": false,
-        "default": "'pending'",
+        "notNull": true,
+        "default": "'ACTIVE'",
         "description": "状态"
-      },
-      {
-        "name": "remark",
-        "type": "text",
-        "notNull": false,
-        "description": "备注"
       },
       {
         "name": "created_at",
         "type": "timestamp",
-        "notNull": false,
+        "notNull": true,
         "default": "now()",
         "description": "创建时间"
       },
       {
         "name": "updated_at",
         "type": "timestamp",
-        "notNull": false,
+        "notNull": true,
         "default": "now()",
         "description": "更新时间"
       }

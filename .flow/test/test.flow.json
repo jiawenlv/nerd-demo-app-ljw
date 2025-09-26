@@ -2,61 +2,103 @@
   "version": "1.0.0",
   "nodes": [
     {
-      "id": "0979603977bd48fdbf40d9f26997728c",
-      "name": "Javascript1",
-      "type": "logic",
+      "id": "1cb0f3f6a9bc43589eea7904da4227d7",
+      "name": "End",
+      "type": "end",
       "desc": "",
       "inputs": {
         "input_1": {
-          "type": "object",
+          "type": "string",
           "desc": "New input field",
-          "value": {
-            "field1": {
-              "field1": "",
-              "field2": "",
-              "field3": ""
-            },
-            "field2": "",
-            "field3": ""
-          },
-          "schema": {
-            "type": "object",
-            "properties": {
-              "field1": {
-                "type": "object",
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "field1": {
-                      "type": "string"
-                    },
-                    "field2": {
-                      "type": "string"
-                    },
-                    "field3": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "field2": {
-                "type": "string"
-              },
-              "field3": {
-                "type": "string"
-              }
-            }
-          }
+          "value": ""
+        },
+        "input_2": {
+          "type": "string",
+          "desc": "New input field",
+          "value": ""
+        },
+        "input_3": {
+          "type": "string",
+          "desc": "New input field",
+          "value": ""
+        },
+        "input_4": {
+          "type": "string",
+          "desc": "New input field",
+          "value": ""
+        },
+        "input_5": {
+          "type": "string",
+          "desc": "New input field",
+          "value": ""
+        },
+        "input_6": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_7": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_8": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_9": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_10": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_11": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_12": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_13": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_14": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_15": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_16": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_17": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
+        },
+        "input_18": {
+          "type": "string",
+          "desc": "New input field",
+          "value": null
         }
       },
-      "outputs": {},
-      "configs": {
-        "file": {
-          "name": "javascript1.js"
-        },
-        "dependencies": []
-      },
-      "next": []
+      "outputs": {}
     }
   ]
 }

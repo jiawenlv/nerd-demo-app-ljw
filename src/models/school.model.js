@@ -1,5 +1,5 @@
 module.exports = {
-    "table": "supplier",
+    "table": "school",
     "columns": [
       {
         "name": "id",
@@ -7,19 +7,25 @@ module.exports = {
         "primaryKey": true,
         "notNull": true,
         "default": "autoincrement()",
-        "description": "供应商唯一标识"
+        "description": "学校唯一标识"
       },
       {
         "name": "name",
         "type": "varchar(100)",
         "notNull": true,
-        "description": "供应商名称"
+        "description": "学校名称"
       },
       {
-        "name": "contact_person",
-        "type": "varchar(50)",
+        "name": "code",
+        "type": "varchar(20)",
         "notNull": false,
-        "description": "联系人"
+        "description": "学校代码"
+      },
+      {
+        "name": "address",
+        "type": "varchar(200)",
+        "notNull": false,
+        "description": "地址"
       },
       {
         "name": "phone",
@@ -28,35 +34,41 @@ module.exports = {
         "description": "电话"
       },
       {
-        "name": "email",
-        "type": "varchar(100)",
+        "name": "principal",
+        "type": "varchar(50)",
         "notNull": false,
-        "description": "邮箱"
+        "description": "校长"
       },
       {
-        "name": "address",
-        "type": "text",
+        "name": "established_date",
+        "type": "date",
         "notNull": false,
-        "description": "地址"
+        "description": "建立日期"
+      },
+      {
+        "name": "type",
+        "type": "varchar(20)",
+        "notNull": false,
+        "description": "类型"
       },
       {
         "name": "status",
-        "type": "varchar(20)",
-        "notNull": false,
+        "type": "varchar(10)",
+        "notNull": true,
         "default": "'active'",
         "description": "状态"
       },
       {
         "name": "created_at",
         "type": "timestamp",
-        "notNull": false,
+        "notNull": true,
         "default": "now()",
         "description": "创建时间"
       },
       {
         "name": "updated_at",
         "type": "timestamp",
-        "notNull": false,
+        "notNull": true,
         "default": "now()",
         "description": "更新时间"
       }

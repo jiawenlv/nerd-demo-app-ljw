@@ -1,58 +1,55 @@
 module.exports = {
-    "table": "PurchaseOrderItem",
+    "table": "purchase_order_item",
     "columns": [
       {
         "name": "id",
-        "type": "uuid",
+        "type": "integer",
         "primaryKey": true,
         "notNull": true,
-        "default": "uuid_generate_v4()",
-        "description": "采购订单明细唯一标识"
+        "default": "autoincrement()",
+        "description": "采购订单项唯一标识"
       },
       {
-        "name": "purchaseOrderId",
-        "type": "uuid",
+        "name": "purchase_order_id",
+        "type": "integer",
         "notNull": true,
-        "description": "采购订单ID",
-        "relation": {
-          "table": "PurchaseOrder",
-          "field": "id"
-        }
+        "description": "采购订单ID"
       },
       {
-        "name": "productId",
-        "type": "uuid",
+        "name": "goods_id",
+        "type": "integer",
         "notNull": true,
-        "description": "商品ID",
-        "relation": {
-          "table": "Product",
-          "field": "id"
-        }
+        "description": "商品ID"
       },
       {
         "name": "quantity",
-        "type": "decimal(10,2)",
+        "type": "integer",
         "notNull": true,
-        "description": "采购数量"
+        "description": "数量"
       },
       {
-        "name": "unitPrice",
+        "name": "unit_price",
         "type": "decimal(10,2)",
         "notNull": true,
         "description": "单价"
       },
       {
-        "name": "totalPrice",
-        "type": "decimal(10,2)",
+        "name": "total_price",
+        "type": "decimal(12,2)",
         "notNull": true,
-        "description": "小计金额"
+        "description": "总价"
       },
       {
-        "name": "receivedQty",
-        "type": "decimal(10,2)",
-        "notNull": true,
-        "default": "0",
-        "description": "已收货数量"
+        "name": "warehouse_id",
+        "type": "integer",
+        "notNull": false,
+        "description": "仓库ID"
+      },
+      {
+        "name": "remark",
+        "type": "text",
+        "notNull": false,
+        "description": "备注"
       }
     ]
 };

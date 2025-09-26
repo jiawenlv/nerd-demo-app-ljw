@@ -1,0 +1,315 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model attachments {
+  attachment_id BigInt   @id @default(autoincrement())
+  note_id       BigInt
+  user_id       BigInt
+  file_name     String   @db.VarChar(255)
+  storage_path  String
+  file_type     String?  @db.VarChar(100)
+  file_size     BigInt   @default(0)
+  uploaded_at   DateTime @default(now()) @db.Timestamptz(6)
+  notes         notes    @relation(fields: [note_id], references: [note_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([note_id], map: "idx_attachments_note_id")
+}
+
+/// This model has been renamed to 'Renamedclass' during introspection, because the original name 'class' is reserved.
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model Renamedclass {
+  id           Int      @id @default(autoincrement())
+  classname    String   @db.VarChar(100)
+  gradeid      Int?
+  teacherid    Int?
+  studentcount Int      @default(0)
+  status       String   @default("ACTIVE") @db.VarChar(20)
+  createdat    DateTime @default(now()) @db.Timestamp(6)
+  updatedat    DateTime @default(now()) @db.Timestamp(6)
+  description  String?
+
+  @@index([gradeid], map: "idx_class_grade_id")
+  @@index([status], map: "idx_class_status")
+  @@index([teacherid], map: "idx_class_teacher_id")
+  @@map("class")
+}
+
+model course {
+  id         Int       @id @default(autoincrement())
+  coursename String    @db.VarChar(100)
+  coursecode String    @unique @db.VarChar(50)
+  teacherid  Int?
+  createdat  DateTime? @default(now()) @db.Timestamp(6)
+
+  @@index([coursecode], map: "idx_course_coursecode")
+  @@index([teacherid], map: "idx_course_teacherid")
+}
+
+model employee {
+  id              Int       @id @default(autoincrement())
+  name            String    @db.VarChar(100)
+  employee_number String    @unique @db.VarChar(50)
+  department      String?   @db.VarChar(100)
+  position        String?   @db.VarChar(100)
+  hire_date       DateTime? @db.Date
+  status          String?   @default("active") @db.VarChar(20)
+  created_at      DateTime? @default(now()) @db.Timestamp(6)
+  updated_at      DateTime? @default(now()) @db.Timestamp(6)
+
+  @@index([department], map: "idx_employee_department")
+  @@index([employee_number], map: "idx_employee_number")
+}
+
+model evaporation {
+  id                Int       @id @default(autoincrement())
+  reservoirid       Int
+  evaporation_value Decimal   @db.Decimal(10, 2)
+  measure_date      DateTime  @db.Date
+  measure_time      DateTime? @db.Time(6)
+  temperature       Decimal?  @db.Decimal(5, 2)
+  humidity          Decimal?  @db.Decimal(5, 2)
+  wind_speed        Decimal?  @db.Decimal(5, 2)
+  recorder_id       Int?
+  remark            String?
+  created_at        DateTime  @default(now()) @db.Timestamp(6)
+  updated_at        DateTime  @default(now()) @db.Timestamp(6)
+
+  @@index([measure_date], map: "idx_evaporation_measure_date")
+  @@index([reservoirid], map: "idx_evaporation_reservoir_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model goods {
+  id             String       @id @db.VarChar(64)
+  name           String       @unique @db.VarChar(255)
+  price          Decimal      @db.Decimal(10, 2)
+  stock_quantity Int
+  created_at     DateTime     @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime     @default(now()) @db.Timestamptz(6)
+  order_item     order_item[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model grade {
+  id           Int       @id @default(autoincrement())
+  studentid    Int
+  courseid     Int
+  score        Decimal?  @db.Decimal(5, 2)
+  semester     String    @db.VarChar(20)
+  academicyear String    @db.VarChar(10)
+  createdat    DateTime? @default(now()) @db.Timestamp(6)
+  updatedat    DateTime? @default(now()) @db.Timestamp(6)
+  updatedby    Int?
+
+  @@index([courseid], map: "idx_grade_courseid")
+  @@index([semester], map: "idx_grade_semester")
+  @@index([studentid], map: "idx_grade_studentid")
+}
+
+model notebooks {
+  notebook_id String   @id @default(dbgenerated("nextval('notebooks_notebook_id_seq'::regclass)")) @db.VarChar(64)
+  user_id     String   @db.VarChar(64)
+  name        String   @db.VarChar(100)
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([user_id], map: "idx_notebooks_user_id")
+}
+
+model notes {
+  note_id        BigInt              @id @default(autoincrement())
+  user_id        String              @db.VarChar(64)
+  notebook_id    BigInt?
+  title          String              @db.VarChar(255)
+  content        String?
+  content_format note_content_format @default(markdown)
+  is_pinned      Boolean             @default(false)
+  is_archived    Boolean             @default(false)
+  is_trashed     Boolean             @default(false)
+  trashed_at     DateTime?           @db.Timestamptz(6)
+  created_at     DateTime            @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime            @default(now()) @db.Timestamptz(6)
+  tags           String?
+  attachments    attachments[]
+
+  @@index([notebook_id], map: "idx_notes_notebook_id")
+  @@index([user_id], map: "idx_notes_user_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model order {
+  id           String       @id @db.VarChar(64)
+  user_id      String       @db.VarChar(64)
+  order_number String       @unique @db.VarChar(64)
+  total_amount Decimal      @db.Decimal(10, 2)
+  status       String       @default("PENDING") @db.VarChar(32)
+  created_at   DateTime     @default(now()) @db.Timestamptz(6)
+  updated_at   DateTime     @default(now()) @db.Timestamptz(6)
+  user         user         @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_order_user")
+  order_item   order_item[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model order_item {
+  id                String   @id @db.VarChar(64)
+  order_id          String   @db.VarChar(64)
+  goods_id          String   @db.VarChar(64)
+  quantity          Int
+  price_at_purchase Decimal  @db.Decimal(10, 2)
+  subtotal          Decimal  @db.Decimal(10, 2)
+  created_at        DateTime @default(now()) @db.Timestamptz(6)
+  updated_at        DateTime @default(now()) @db.Timestamptz(6)
+  goods             goods    @relation(fields: [goods_id], references: [id], onUpdate: NoAction, map: "fk_order_item_goods_id")
+  order             order    @relation(fields: [order_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_order_item_order_id")
+}
+
+model purchase_order {
+  id           Int       @id @default(autoincrement())
+  order_number String    @db.VarChar(50)
+  supplier_id  Int?
+  employee_id  Int?
+  total_amount Decimal?  @db.Decimal(12, 2)
+  status       String?   @default("pending") @db.VarChar(20)
+  remark       String?
+  created_at   DateTime? @default(now()) @db.Timestamp(6)
+  updated_at   DateTime? @default(now()) @db.Timestamp(6)
+
+  @@index([employee_id], map: "idx_purchase_order_employee")
+  @@index([order_number], map: "idx_purchase_order_number")
+  @@index([status], map: "idx_purchase_order_status")
+  @@index([supplier_id], map: "idx_purchase_order_supplier")
+}
+
+model purchase_order_item {
+  id                Int     @id @default(autoincrement())
+  purchase_order_id Int
+  goods_id          Int
+  quantity          Int
+  unit_price        Decimal @db.Decimal(10, 2)
+  total_price       Decimal @db.Decimal(12, 2)
+  warehouse_id      Int?
+  remark            String?
+
+  @@index([goods_id], map: "idx_purchase_order_item_goods")
+  @@index([purchase_order_id], map: "idx_purchase_order_item_order")
+  @@index([warehouse_id], map: "idx_purchase_order_item_warehouse")
+}
+
+model reservoir {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(100)
+  code        String?  @db.VarChar(50)
+  location    String?  @db.VarChar(200)
+  capacity    Decimal? @db.Decimal(12, 2)
+  area        Decimal? @db.Decimal(10, 2)
+  status      String   @default("active") @db.VarChar(20)
+  description String?
+  created_at  DateTime @default(now()) @db.Timestamp(6)
+  updated_at  DateTime @default(now()) @db.Timestamp(6)
+  created_by  Int?
+  updated_by  Int?
+
+  @@index([code], map: "idx_reservoir_code")
+  @@index([created_at], map: "idx_reservoir_created_at")
+  @@index([name], map: "idx_reservoir_name")
+  @@index([status], map: "idx_reservoir_status")
+}
+
+model school {
+  id               Int       @id @default(autoincrement())
+  name             String    @db.VarChar(100)
+  code             String?   @db.VarChar(20)
+  address          String?   @db.VarChar(200)
+  phone            String?   @db.VarChar(20)
+  principal        String?   @db.VarChar(50)
+  established_date DateTime? @db.Date
+  type             String?   @db.VarChar(20)
+  status           String    @default("active") @db.VarChar(10)
+  created_at       DateTime  @default(now()) @db.Timestamp(6)
+  updated_at       DateTime  @default(now()) @db.Timestamp(6)
+
+  @@index([code], map: "idx_school_code")
+  @@index([name], map: "idx_school_name")
+}
+
+model student {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(100)
+  studentnumber String    @unique @db.VarChar(50)
+  classid       Int?
+  createdat     DateTime? @default(now()) @db.Timestamp(6)
+  updatedat     DateTime? @default(now()) @db.Timestamp(6)
+
+  @@index([classid], map: "idx_student_classid")
+  @@index([studentnumber], map: "idx_student_studentnumber")
+}
+
+model supplier {
+  id             Int       @id @default(autoincrement())
+  name           String    @db.VarChar(100)
+  contact_person String?   @db.VarChar(50)
+  phone          String?   @db.VarChar(20)
+  email          String?   @db.VarChar(100)
+  address        String?
+  status         String?   @default("active") @db.VarChar(20)
+  created_at     DateTime? @default(now()) @db.Timestamp(6)
+  updated_at     DateTime? @default(now()) @db.Timestamp(6)
+
+  @@index([name], map: "idx_supplier_name")
+  @@index([status], map: "idx_supplier_status")
+}
+
+model tags {
+  tag_id     BigInt   @id @default(autoincrement())
+  user_id    String   @db.VarChar(64)
+  name       String   @db.VarChar(50)
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@unique([user_id, name])
+  @@index([user_id], map: "idx_tags_user_id")
+}
+
+model teacher {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(100)
+  employeeid Int?
+  title      String?  @db.VarChar(50)
+  subject    String?  @db.VarChar(100)
+  status     String   @default("ACTIVE") @db.VarChar(20)
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  updated_at DateTime @default(now()) @db.Timestamp(6)
+
+  @@index([employeeid], map: "idx_teacher_employee_id")
+  @@index([name], map: "idx_teacher_name")
+  @@index([status], map: "idx_teacher_status")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model user {
+  id         String    @id(map: "users_pkey") @db.VarChar(64)
+  name       String    @unique(map: "users_name_key") @db.VarChar(32)
+  password   String    @db.VarChar(128)
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  dewrw      String?   @db.VarChar(32)
+  order      order[]
+}
+
+enum note_content_format {
+  plaintext
+  markdown
+  html
+}
+
+enum share_permission_level {
+  view
+  edit
+}

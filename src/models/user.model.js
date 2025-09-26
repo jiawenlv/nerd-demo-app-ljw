@@ -1,40 +1,38 @@
 module.exports = {
-    "table": "User",
+    "table": "user",
     "columns": [
       {
         "name": "id",
-        "type": "uuid",
+        "type": "varchar(64)",
         "primaryKey": true,
         "notNull": true,
-        "default": "uuid_generate_v4()",
         "description": "用户唯一标识"
       },
       {
         "name": "name",
-        "type": "varchar(255)",
-        "notNull": true,
-        "description": "用户姓名"
-      },
-      {
-        "name": "email",
-        "type": "varchar(255)",
+        "type": "varchar(32)",
         "notNull": true,
         "unique": true,
-        "description": "用户邮箱"
+        "description": "用户名"
       },
       {
-        "name": "isVip",
-        "type": "boolean",
+        "name": "password",
+        "type": "varchar(128)",
         "notNull": true,
-        "default": "false",
-        "description": "是否VIP用户"
+        "description": "密码"
       },
       {
-        "name": "roles",
-        "type": "text[]",
-        "notNull": true,
-        "default": "'{}'",
-        "description": "用户角色列表"
+        "name": "created_at",
+        "type": "timestamptz",
+        "notNull": false,
+        "default": "now()",
+        "description": "创建时间"
+      },
+      {
+        "name": "dewrw",
+        "type": "varchar(32)",
+        "notNull": false,
+        "description": "额外字段"
       }
     ]
 };

@@ -1,42 +1,50 @@
 module.exports = {
-    "table": "order",
+    "table": "order_item",
     "columns": [
       {
         "name": "id",
         "type": "varchar(64)",
         "primaryKey": true,
         "notNull": true,
-        "description": "订单唯一标识"
+        "description": "订单项唯一标识"
       },
       {
-        "name": "user_id",
+        "name": "order_id",
         "type": "varchar(64)",
         "notNull": true,
-        "description": "用户ID",
+        "description": "订单ID",
         "relation": {
-          "table": "user",
+          "table": "order",
           "field": "id"
         }
       },
       {
-        "name": "order_number",
+        "name": "goods_id",
         "type": "varchar(64)",
         "notNull": true,
-        "unique": true,
-        "description": "订单号"
+        "description": "商品ID",
+        "relation": {
+          "table": "goods",
+          "field": "id"
+        }
       },
       {
-        "name": "total_amount",
+        "name": "quantity",
+        "type": "integer",
+        "notNull": true,
+        "description": "数量"
+      },
+      {
+        "name": "price_at_purchase",
         "type": "decimal(10,2)",
         "notNull": true,
-        "description": "总金额"
+        "description": "购买时价格"
       },
       {
-        "name": "status",
-        "type": "varchar(32)",
+        "name": "subtotal",
+        "type": "decimal(10,2)",
         "notNull": true,
-        "default": "'PENDING'",
-        "description": "状态"
+        "description": "小计"
       },
       {
         "name": "created_at",

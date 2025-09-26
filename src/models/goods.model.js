@@ -1,42 +1,31 @@
 module.exports = {
-    "table": "order",
+    "table": "goods",
     "columns": [
       {
         "name": "id",
         "type": "varchar(64)",
         "primaryKey": true,
         "notNull": true,
-        "description": "订单唯一标识"
+        "description": "商品唯一标识"
       },
       {
-        "name": "user_id",
-        "type": "varchar(64)",
-        "notNull": true,
-        "description": "用户ID",
-        "relation": {
-          "table": "user",
-          "field": "id"
-        }
-      },
-      {
-        "name": "order_number",
-        "type": "varchar(64)",
+        "name": "name",
+        "type": "varchar(255)",
         "notNull": true,
         "unique": true,
-        "description": "订单号"
+        "description": "商品名称"
       },
       {
-        "name": "total_amount",
+        "name": "price",
         "type": "decimal(10,2)",
         "notNull": true,
-        "description": "总金额"
+        "description": "价格"
       },
       {
-        "name": "status",
-        "type": "varchar(32)",
+        "name": "stock_quantity",
+        "type": "integer",
         "notNull": true,
-        "default": "'PENDING'",
-        "description": "状态"
+        "description": "库存数量"
       },
       {
         "name": "created_at",

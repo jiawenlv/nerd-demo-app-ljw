@@ -1,5 +1,5 @@
 module.exports = {
-    "table": "Warehouse",
+    "table": "demo",
     "columns": [
       {
         "name": "id",
@@ -7,32 +7,37 @@ module.exports = {
         "primaryKey": true,
         "notNull": true,
         "default": "uuid_generate_v4()",
-        "description": "仓库唯一标识"
+        "description": "商品分类唯一标识"
       },
       {
         "name": "code",
         "type": "varchar(100)",
         "notNull": true,
         "unique": true,
-        "description": "仓库编号"
+        "description": "分类编号"
       },
       {
         "name": "name",
         "type": "varchar(255)",
         "notNull": true,
-        "description": "仓库名称"
+        "description": "分类名称"
       },
       {
-        "name": "address",
-        "type": "text",
-        "notNull": false,
-        "description": "仓库地址"
-      },
-      {
-        "name": "managerId",
+        "name": "parentId",
         "type": "uuid",
         "notNull": false,
-        "description": "管理员ID"
+        "description": "父分类ID",
+        "relation": {
+          "table": "Category",
+          "field": "id"
+        }
+      },
+      {
+        "name": "level",
+        "type": "integer",
+        "notNull": true,
+        "default": "1",
+        "description": "分类层级"
       },
       {
         "name": "status",

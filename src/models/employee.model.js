@@ -1,5 +1,5 @@
 module.exports = {
-    "table": "purchase_order",
+    "table": "employee",
     "columns": [
       {
         "name": "id",
@@ -7,44 +7,45 @@ module.exports = {
         "primaryKey": true,
         "notNull": true,
         "default": "autoincrement()",
-        "description": "采购订单唯一标识"
+        "description": "员工唯一标识"
       },
       {
-        "name": "order_number",
+        "name": "name",
+        "type": "varchar(100)",
+        "notNull": true,
+        "description": "员工姓名"
+      },
+      {
+        "name": "employee_number",
         "type": "varchar(50)",
         "notNull": true,
-        "description": "订单号"
+        "unique": true,
+        "description": "员工号"
       },
       {
-        "name": "supplier_id",
-        "type": "integer",
+        "name": "department",
+        "type": "varchar(100)",
         "notNull": false,
-        "description": "供应商ID"
+        "description": "部门"
       },
       {
-        "name": "employee_id",
-        "type": "integer",
+        "name": "position",
+        "type": "varchar(100)",
         "notNull": false,
-        "description": "员工ID"
+        "description": "职位"
       },
       {
-        "name": "total_amount",
-        "type": "decimal(12,2)",
+        "name": "hire_date",
+        "type": "date",
         "notNull": false,
-        "description": "总金额"
+        "description": "入职日期"
       },
       {
         "name": "status",
         "type": "varchar(20)",
         "notNull": false,
-        "default": "'pending'",
+        "default": "'active'",
         "description": "状态"
-      },
-      {
-        "name": "remark",
-        "type": "text",
-        "notNull": false,
-        "description": "备注"
       },
       {
         "name": "created_at",
