@@ -1,7 +1,11 @@
-export default async function Javascript1(inputs) {
-    console.log('Executing Javascript1');
-    // TODO: Implement your logic here
+export default function(inputs) {
+    //
+    // inputs
+    // 123123123
+    // 2234234
+
     return {
-        result: inputs.input_1
-    }
+        // 定义所有需要输出的字段
+        result: "123123"
+    };
 }

@@ -28,11 +28,5 @@ module.exports = {
         "default": "now()",
         "description": "创建时间"
       },
-      {
-        "name": "dewrw",
-        "type": "varchar(32)",
-        "notNull": false,
-        "description": "额外字段"
-      }
     ]
 };

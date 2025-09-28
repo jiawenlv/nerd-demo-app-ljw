@@ -5,6 +5,7 @@ import testScriptRouter from './test-script.js'
 import testConditionRouter from './test-condition.js'
 import testLogicRouter from './test-logic.js'
 import testInputsRouter from './test-inputs.js'
+import testCreateRouter from './test-create.js'
 
 const router = new Router()
 
@@ -14,5 +15,6 @@ router.use(testScriptRouter.routes())
 router.use(testConditionRouter.routes())
 router.use(testLogicRouter.routes())
 router.use(testInputsRouter.routes())
+router.use(testCreateRouter.routes())
 
 export default router

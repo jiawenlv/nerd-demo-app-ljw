@@ -1,52 +1,32 @@
 {
   "nodes": {
-    "5c4bbd95558643d2b17d749c8e8ce738": {
-      "x": 270,
-      "y": 300,
-      "width": 150,
-      "height": 40,
-      "inputs": {
-        "input_1": "5c4bbd95558643d2b17d749c8e8ce738.input_1"
-      }
+    "b665e0250cf64f438e8ab6103ad32250": {
+      "x": -255,
+      "y": 135,
+      "width": 470,
+      "height": 874
     },
-    "84662dcb8dfd4afab1b89bdfa81efb08": {
-      "x": 1560,
-      "y": 825,
-      "width": 350,
-      "height": 515,
-      "inputs": {
-        "input_1": "84662dcb8dfd4afab1b89bdfa81efb08.input_1"
-      },
-      "outputs": {
-        "output1": "fd7ed8adafbe4a029f60e174e468f61a",
-        "output2": "f1ca976c150745fba2de400d526d39b1"
-      }
+    "5abe28f39ea84990a1a90235a22f4394": {
+      "x": 1170,
+      "y": 915,
+      "width": 545,
+      "height": 427
     },
-    "ca00b4e54bd441e3a5ff4b4342092e09": {
-      "x": 885,
-      "y": 165,
-      "width": 530,
+    "68c06ed92f2a43eab96be680607cfd5e": {
+      "x": 375,
+      "y": 285,
+      "width": 635,
       "height": 599,
-      "inputs": {
-        "input_1": "ca00b4e54bd441e3a5ff4b4342092e09.input_1"
-      },
       "handleIds": {
-        "condition_0": "3d571b13237842258c798e5c3c3f3129",
-        "default": "35636451ab384a769f417453bd52379f"
+        "condition_0": "b2b274d94ca24cb49982cedfd169968f",
+        "default": "67585eedfb8f4699b55f8b711b5820bb"
       }
     },
-    "d8ce4b70e2b040d6b7187310ae6538b6": {
-      "x": 1560,
-      "y": 105,
-      "width": 350,
-      "height": 515,
-      "inputs": {
-        "input_1": "d8ce4b70e2b040d6b7187310ae6538b6.input_1"
-      },
-      "outputs": {
-        "output1": "02cd9cd9e98c46f9a16cc3e930c7f25e",
-        "output2": "260abd619d2e46488353c919d5a34f80"
-      }
+    "c6e304b09ed449ccb51715447b2abfdf": {
+      "x": 1185,
+      "y": 210,
+      "width": 515,
+      "height": 581
     }
   }
 }

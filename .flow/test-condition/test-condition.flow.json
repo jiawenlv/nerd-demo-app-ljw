@@ -2,39 +2,81 @@
   "version": "1.0.0",
   "nodes": [
     {
-      "id": "5c4bbd95558643d2b17d749c8e8ce738",
-      "name": "Start",
-      "type": "start",
-      "desc": "该节点暂无描述",
+      "id": "b665e0250cf64f438e8ab6103ad32250",
+      "name": "API",
+      "type": "api",
+      "desc": "配置API请求参数和认证信息",
+      "configs": {
+        "method": "GET",
+        "path": "/{a}/{b}",
+        "auth": "none",
+        "middlewares": []
+      },
       "inputs": {
-        "input_1": {
-          "type": "string",
-          "desc": "New input field",
-          "value": "99"
+        "body": {
+          "type": "object",
+          "desc": "Request body parameters",
+          "value": {
+            "field1": 111
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "field1": {
+                "name": "field1",
+                "type": "number",
+                "description": "",
+                "required": false
+              }
+            }
+          }
+        },
+        "query": {
+          "type": "object",
+          "desc": "Query parameters",
+          "value": {},
+          "schema": {
+            "type": "object"
+          }
+        },
+        "headers": {
+          "type": "object",
+          "desc": "Request headers",
+          "value": {},
+          "schema": {
+            "type": "object"
+          }
+        },
+        "pathParams": {
+          "type": "object",
+          "desc": "Path parameters",
+          "value": {},
+          "schema": {
+            "type": "object"
+          }
         }
       },
+      "outputs": {},
       "next": [
         "Condition"
       ]
     },
     {
-      "id": "84662dcb8dfd4afab1b89bdfa81efb08",
+      "id": "5abe28f39ea84990a1a90235a22f4394",
       "name": "End2",
       "type": "end",
       "desc": "",
       "inputs": {
-        "input_1": {
+        "field1": {
           "type": "string",
-          "desc": "New input field",
-          "value": "$.Start.inputs.input_1"
+          "value": "$.API.inputs.body.field1"
         }
       },
       "outputs": {
         "output1": {
           "type": "string",
           "desc": "自定义输出1",
-          "value": "小于等于100",
-          "isDynamic": false,
+          "value": "${field1}",
           "isBuiltin": false,
           "editable": true,
           "removable": true
@@ -42,8 +84,7 @@
         "output2": {
           "type": "string",
           "desc": "自定义输出2",
-          "value": "${input_1}",
-          "isDynamic": false,
+          "value": "小于等于 100",
           "isBuiltin": false,
           "editable": true,
           "removable": true
@@ -51,15 +92,15 @@
       }
     },
     {
-      "id": "ca00b4e54bd441e3a5ff4b4342092e09",
+      "id": "68c06ed92f2a43eab96be680607cfd5e",
       "name": "Condition",
       "type": "condition",
       "desc": "",
       "inputs": {
-        "input_1": {
+        "field1": {
           "type": "string",
-          "desc": "New input field",
-          "value": "$.Start.inputs.input_1"
+          "desc": "",
+          "value": "$.API.inputs.body.field1"
         }
       },
       "configs": {
@@ -67,20 +108,22 @@
           {
             "conditions": [
               {
-                "left": "${input_1}",
+                "left": "${field1}",
                 "operator": "greaterThan",
-                "right": "100"
+                "right": 100
               }
             ],
             "relationship": "AND",
-            "handleId": "3d571b13237842258c798e5c3c3f3129",
+            "handleId": "b2b274d94ca24cb49982cedfd169968f",
+            "desc": "第一个条件组",
             "nextNode": "End"
           },
           {
             "conditions": [],
             "relationship": "AND",
-            "handleId": "35636451ab384a769f417453bd52379f",
+            "handleId": "67585eedfb8f4699b55f8b711b5820bb",
             "isDefaultBranch": true,
+            "desc": "默认分支",
             "nextNode": "End2"
           }
         ],
@@ -88,23 +131,21 @@
       }
     },
     {
-      "id": "d8ce4b70e2b040d6b7187310ae6538b6",
+      "id": "c6e304b09ed449ccb51715447b2abfdf",
       "name": "End",
       "type": "end",
       "desc": "",
       "inputs": {
-        "input_1": {
+        "field1": {
           "type": "string",
-          "desc": "New input field",
-          "value": "$.Start.inputs.input_1"
+          "value": "$.API.inputs.body.field1"
         }
       },
       "outputs": {
         "output1": {
           "type": "string",
           "desc": "自定义输出1",
-          "value": "大于100",
-          "isDynamic": false,
+          "value": "${field1}",
           "isBuiltin": false,
           "editable": true,
           "removable": true
@@ -112,8 +153,7 @@
         "output2": {
           "type": "string",
           "desc": "自定义输出2",
-          "value": "${input_1}",
-          "isDynamic": false,
+          "value": "大于 100",
           "isBuiltin": false,
           "editable": true,
           "removable": true

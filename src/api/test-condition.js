@@ -5,11 +5,11 @@ const router = new Router()
 
 router.post('/test-condition', async (ctx) => {
   // 提取请求参数
-  const { input_1 } = ctx.request.body
-  
+  // 无需提取参数
+
   // 调用主处理函数（平铺参数）
-  const result = await testConditionHandler(input_1);
-  
+  const result = await testConditionHandler();
+
   // 返回结果
   ctx.body = result;
   ctx.status = 200;

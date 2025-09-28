@@ -2,103 +2,104 @@
   "version": "1.0.0",
   "nodes": [
     {
-      "id": "1cb0f3f6a9bc43589eea7904da4227d7",
+      "id": "94fde5bb4fb946e6b53e3ac370f4401c",
+      "name": "API",
+      "type": "api",
+      "desc": "配置API请求参数和认证信息",
+      "configs": {
+        "method": "GET",
+        "path": "/",
+        "auth": "none",
+        "middlewares": []
+      },
+      "inputs": {
+        "body": {
+          "type": "object",
+          "desc": "Request body parameters",
+          "value": {
+            "field1": "11",
+            "field2": [
+              "1",
+              "2"
+            ]
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "field1": {
+                "name": "field1",
+                "type": "string",
+                "description": "",
+                "required": false
+              },
+              "field2": {
+                "name": "field2",
+                "type": "array",
+                "required": false,
+                "items": {
+                  "name": "item",
+                  "type": "string",
+                  "required": false
+                }
+              }
+            }
+          }
+        },
+        "query": {
+          "type": "object",
+          "desc": "Query parameters",
+          "value": {},
+          "schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "headers": {
+          "type": "object",
+          "desc": "Request headers",
+          "value": {},
+          "schema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "pathParams": {
+          "type": "object",
+          "desc": "Path parameters",
+          "value": {},
+          "schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "outputs": {},
+      "next": [
+        "End"
+      ]
+    },
+    {
+      "id": "564d27f7328e400bae04c3a2544bdaec",
       "name": "End",
       "type": "end",
       "desc": "",
       "inputs": {
-        "input_1": {
+        "field1": {
           "type": "string",
-          "desc": "New input field",
-          "value": ""
-        },
-        "input_2": {
-          "type": "string",
-          "desc": "New input field",
-          "value": ""
-        },
-        "input_3": {
-          "type": "string",
-          "desc": "New input field",
-          "value": ""
-        },
-        "input_4": {
-          "type": "string",
-          "desc": "New input field",
-          "value": ""
-        },
-        "input_5": {
-          "type": "string",
-          "desc": "New input field",
-          "value": ""
-        },
-        "input_6": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_7": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_8": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_9": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_10": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_11": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_12": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_13": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_14": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_15": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_16": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_17": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
-        },
-        "input_18": {
-          "type": "string",
-          "desc": "New input field",
-          "value": null
+          "desc": "",
+          "value": "$.API.inputs.body.field1"
         }
       },
-      "outputs": {}
+      "outputs": {
+        "output1": {
+          "type": "string",
+          "desc": "自定义输出1",
+          "value": "${field1}",
+          "isBuiltin": false,
+          "editable": true,
+          "removable": true
+        }
+      }
     }
   ]
 }

@@ -1,7 +1,9 @@
-export default async function Javascript2(inputs) {
-    console.log('Executing Javascript1');
-    // TODO: Implement your logic here
+export default function(inputs) {
+    //
+    // inputs
+
     return {
-        result2: inputs.input_1 + inputs.input_1
-    }
+        // 定义所有需要输出的字段
+        result: "008 Hello from Javascript2"
+    };
 }
